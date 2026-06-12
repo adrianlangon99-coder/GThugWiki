@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Coming Soon | ThugWiki</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+    :root { --bg-dark: #000000; --glass-bg: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.06); --text-main: #ffffff; --text-sub: #a1a1aa; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      overscroll-behavior-y: none;
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+    }
+    .coming-soon-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px;
+      width: 95%;
+      max-width: 500px;
+      text-align: center;
+      backdrop-filter: blur(15px);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .timeline-container { margin-top: 10px; text-align: left; padding: 0 10px; }
+    .step { display: flex; gap: 12px; margin-bottom: 15px; position: relative; }
+    .step::before { content: ''; position: absolute; left: 6px; top: 20px; height: 100%; width: 1px; background: var(--glass-border); }
+    .step:last-child::before { display: none; }
+    .dot { width: 12px; height: 12px; background: #333; border-radius: 50%; margin-top: 3px; }
+    .step.done .dot { background: #10b981; box-shadow: 0 0 8px #10b981; }
+    .step-content h4 { font-size: 0.85rem; margin: 0; }
+    .step-content p { color: #666; font-size: 0.7rem; margin: 0; }
+    .return-btn {
+      display: block;
+      background: #fff;
+      color: #000;
+      padding: 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="coming-soon-card">
+    <div class="badge">Coming Soon</div>
+    <div class="timeline-container">
+      <div class="step done"><div class="dot"></div><div class="step-content"><h4>Phase 1: Pre-Planning</h4><p>Architecture locked.</p></div></div>
+      <div class="step done"><div class="dot"></div><div class="step-content"><h4>Phase 2: Domain Acquisition</h4><p>Domain active.</p></div></div>
+      <div class="step done"><div class="dot"></div><div class="step-content"><h4>Phase 3: Active Development</h4><p>Coding in progress.</p></div></div>
+      <div class="step"><div class="dot"></div><div class="step-content"><h4>Phase 4: Bug Testing</h4><p>Next month.</p></div></div>
+      <div class="step"><div class="dot"></div><div class="step-content"><h4>Phase 5: Finalization</h4><p>Readying build.</p></div></div>
+      <div class="step"><div class="dot"></div><div class="step-content"><h4>Phase 6: Publishing</h4><p>Live launch.</p></div></div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+  </script>
+</body>
+</html>
