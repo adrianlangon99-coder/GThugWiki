@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Account | ThugWiki</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="account.css">
 </head>
 <body>
 
   <nav class="app-top-bar">
-    <a href="community.html" style="color: var(--text-sub); text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: 600; width: 80px;">
+    <a href="community.html" class="nav-back-link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
         <line x1="19" y1="12" x2="5" y2="12"></line>
         <polyline points="12 19 5 12 12 5"></polyline>
@@ -17,32 +18,62 @@
       Back
     </a>
     <h1 class="site-brand">Account</h1>
-    <div style="width: 80px;"></div>
+    <div class="nav-spacer"></div>
   </nav>
 
   <main class="wiki-container animate-in">
     
-    <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 24px; max-width: 500px; margin: 0 auto; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);">
+    <div class="thug-account-wrapper">
       
-      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
-        <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" style="color: var(--text-sub);">
+      <div class="profile-header-card">
+        <div class="profile-avatar-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
         </div>
-        <div>
-          <h2 id="display-username" style="margin: 0; font-size: 1.5rem; color: var(--text-main); font-weight: 800; letter-spacing: -0.02em;">Loading...</h2>
-          <p id="display-email" style="margin: 4px 0 0 0; color: var(--text-sub); font-size: 0.9rem;">Fetching details...</p>
+        <div class="profile-meta-info">
+          <h2 id="display-username" class="username-text">Loading...</h2>
+          <p id="display-email" class="email-text">Fetching details...</p>
         </div>
       </div>
 
-      <div style="border-top: 1px solid var(--glass-border); padding-top: 20px; margin-bottom: 24px;">
-        <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">Wiki Member Since</p>
-        <p id="display-date" style="margin: 4px 0 0 0; font-weight: 600; color: var(--text-main);">--</p>
+      <div class="profile-join-date">
+        <p class="join-label">Wiki Member Since</p>
+        <p id="display-date" class="join-value">--</p>
       </div>
 
-      <button id="logout-btn" style="width: 100%; background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); padding: 14px; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: transform 0.1s ease, background 0.2s ease;">
+      <div class="account-achievement-card">
+        <div class="achievement-trophy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+            <path d="M4 22h16"></path>
+            <path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"></path>
+            <path d="M12 2a4 4 0 0 0-4 4v5a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4z"></path>
+          </svg>
+        </div>
+
+        <img src="https://res.cloudinary.com/ddrhamsxu/image/upload/q_auto/f_auto/v1781524403/IMG_0298_yewvzr.png" 
+             alt="Official Thug Member Badge" 
+             class="achievement-icon">
+        
+        <div class="achievement-divider"></div>
+
+        <div class="achievement-details">
+          <div class="achievement-meta">
+            <span class="achievement-title">Thug Member</span>
+            <span class="achievement-percentage">100%</span>
+          </div>
+          <p class="achievement-desc">Successfully verified your profile.</p>
+          
+          <div class="achievement-progress-track">
+            <div class="achievement-progress-fill" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <button id="logout-btn" class="action-btn-danger">
         Sign Out
       </button>
 
