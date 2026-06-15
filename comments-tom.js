@@ -2,7 +2,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { 
   getFirestore, 
   collection, 
+  doc,
   addDoc, 
+  getDoc,
+  setDoc,
   query, 
   orderBy, 
   onSnapshot, 
@@ -34,12 +37,19 @@ const commentsFeed = document.getElementById('commentsFeed');
 const userIdentityHeader = document.getElementById('commentUserIdentity');
 const guestStatusBadge = document.getElementById('guestStatusBadge');
 
+// Admin Editing UI Selectors
+const adminWorkspaceTray = document.getElementById("admin-workspace-tray");
+const editPageBtn = document.getElementById("edit-current-lore-btn");
+const savePageBtn = document.getElementById("save-current-lore-btn");
+const bioTextContainer = document.getElementById("wiki-bio-text");
+
 // Unique identifier path for this profile
 const pageId = "tom-lore"; 
 let currentDisplayName = "Anonymous Guest";
+let isAdmin = false;
 
 // ========================================================
-// TEAM ACCESS CONTROL WHITELIST (Paste your UIDs here)
+// TEAM ACCESS CONTROL WHITELIST (Your UID is active here!)
 // ========================================================
 const adminUidWhitelist = [
   "c597pc8i0JSJ2gt9iA5WnXyc7n22", 
@@ -48,59 +58,132 @@ const adminUidWhitelist = [
 ];
 
 // ==========================================
-// 1. Auth Event State Listener
+// 1. Live Lore Data Loader Engine
+// ==========================================
+async function loadPageContent() {
+  if (!bioTextContainer) return;
+  
+  try {
+    const docRef = doc(db, "wikis", pageId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists() && docSnap.data().biography) {
+      // Pull dynamic HTML text layers straight out of cloud collections
+      bioTextContainer.innerHTML = docSnap.data().biography;
+    } else {
+      console.log("No custom cloud biography found. Keeping standard HTML fallback content active.");
+    }
+  } catch (error) {
+    console.error("Error loading lore data node:", error);
+  }
+}
+
+// Fire data synchronization on load
+loadPageContent();
+
+// ==========================================
+// 2. Auth Event State Listener (CLEANED & FIXED)
 // ==========================================
 onAuthStateChanged(auth, (user) => {
-  // Target the hidden HTML administrative menu container
-  const adminWorkspaceTray = document.getElementById("admin-workspace-tray");
-
   if (user) {
-    // Read display name or split the email prefix if display name is unassigned
-    currentDisplayName = user.displayName || user.email.split('@')[0] || "Authenticated User";
+    // Strictly uses chosen profile name, NEVER leaks account emails
+    currentDisplayName = user.displayName || "Anonymous Thug";
     
     if (userIdentityHeader) {
       userIdentityHeader.innerHTML = `Posting as: <span style="color: #3b82f6; font-weight: 700;">${currentDisplayName}</span>`;
     }
     if (guestStatusBadge) guestStatusBadge.style.display = "none";
     
-    // Unlock input mechanisms
-    if (commentTextArea) {
-      commentTextArea.disabled = false;
-      commentTextArea.placeholder = "Share lore info or report a clip breakdown...";
-    }
+    if (commentTextArea) commentTextArea.disabled = false;
     if (submitCommentBtn) submitCommentBtn.disabled = false;
 
-    // ----------------------------------------------------
-    // ADMIN SIGNATURE IDENTITY CHECK
-    // ----------------------------------------------------
+    // Secure Admin access validation
     if (adminUidWhitelist.includes(user.uid)) {
+      isAdmin = true;
       console.log("Admin signature verified. Launching panel controls...");
-      if (adminWorkspaceTray) {
-        adminWorkspaceTray.style.display = "block"; // Opens the edit dashboard panel
-      }
+      if (adminWorkspaceTray) adminWorkspaceTray.style.display = "block";
     } else {
-      // Standard logged-in user: keep admin console safely hidden
+      isAdmin = false;
       if (adminWorkspaceTray) adminWorkspaceTray.style.display = "none";
     }
 
   } else {
+    // Safe guest fallback layout rules
     currentDisplayName = "Anonymous Guest";
+    isAdmin = false;
     if (userIdentityHeader) {
       userIdentityHeader.innerHTML = `Posting as: <span style="color: rgba(255,255,255,0.4); font-weight: 700;">Anonymous Guest</span>`;
     }
     if (guestStatusBadge) guestStatusBadge.style.display = "inline";
     
-    // Keep inputs active for guests based on your project requirements
     if (commentTextArea) commentTextArea.disabled = false; 
     if (submitCommentBtn) submitCommentBtn.disabled = false;
-
-    // Unauthenticated guest: protect administration interface
     if (adminWorkspaceTray) adminWorkspaceTray.style.display = "none";
   }
 });
 
 // ==========================================
-// 2. Real-Time Snapshot Feed Listener
+// 3. Admin Inline Page Editing Functions
+// ==========================================
+if (editPageBtn && savePageBtn && bioTextContainer) {
+  
+  // Activate inline document editing
+  editPageBtn.addEventListener("click", () => {
+    if (!isAdmin) return;
+
+    bioTextContainer.contentEditable = "true";
+    bioTextContainer.style.border = "1px dashed #3b82f6";
+    bioTextContainer.style.padding = "14px";
+    bioTextContainer.style.borderRadius = "12px";
+    bioTextContainer.style.background = "rgba(59, 130, 246, 0.02)";
+    bioTextContainer.focus();
+
+    // Toggle dashboard actions
+    editPageBtn.style.display = "none";
+    savePageBtn.style.display = "block";
+  });
+
+  // Commit text inputs straight into Firestore
+  savePageBtn.addEventListener("click", async () => {
+    if (!isAdmin) return;
+
+    const updatedText = bioTextContainer.innerHTML;
+
+    try {
+      savePageBtn.disabled = true;
+      savePageBtn.innerText = "Saving...";
+
+      // Write layout mutations straight to server node keys
+      await setDoc(doc(db, "wikis", pageId), {
+        biography: updatedText,
+        lastUpdatedBy: auth.currentUser.uid,
+        lastUpdatedTime: serverTimestamp()
+      }, { merge: true });
+
+      // Kill editing layouts cleanly
+      bioTextContainer.contentEditable = "false";
+      bioTextContainer.style.border = "none";
+      bioTextContainer.style.background = "none";
+      bioTextContainer.style.padding = "0";
+
+      // Reset button layouts
+      savePageBtn.style.display = "none";
+      savePageBtn.disabled = false;
+      savePageBtn.innerText = "Save Changes";
+      editPageBtn.style.display = "block";
+
+      alert("Lore archive updated successfully across all system nodes!");
+    } catch (error) {
+      console.error("Firestore write transaction error:", error);
+      alert("Database push failed. Please verify security parameters.");
+      savePageBtn.disabled = false;
+      savePageBtn.innerText = "Save Changes";
+    }
+  });
+}
+
+// ==========================================
+// 4. Real-Time Snapshot Feed Listener
 // ==========================================
 const commentsRef = collection(db, "wikis", pageId, "comments");
 const q = query(commentsRef, orderBy("timestamp", "desc"));
@@ -116,11 +199,8 @@ onSnapshot(q, (snapshot) => {
 
   snapshot.forEach((doc) => {
     const data = doc.data();
-    
-    // Check if cloud clock has stamped the file yet
     const formattedTime = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString([], {dateStyle: 'short', timeStyle: 'short'}) : 'Just now';
     
-    // Run string sanitization to prevent XSS script code injections
     const secureAuthor = data.author.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     const secureComment = data.comment.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -143,7 +223,7 @@ onSnapshot(q, (snapshot) => {
 });
 
 // ==========================================
-// 3. Document Submission Handler
+// 5. Document Submission Handler
 // ==========================================
 if (commentForm) {
   commentForm.addEventListener('submit', async (e) => {
@@ -159,21 +239,16 @@ if (commentForm) {
     };
 
     try {
-      // Freeze form controls to prevent duplicate clicks
       submitCommentBtn.disabled = true;
       commentTextArea.disabled = true;
       submitCommentBtn.innerText = "Processing...";
 
-      // Fire payload straight into the sub-collection folder
       await addDoc(collection(db, "wikis", pageId, "comments"), payload);
-      
-      // Clear comment body area clean
       commentTextArea.value = "";
     } catch (error) {
       console.error("Firestore database push failure:", error);
       alert("Connection error. The archive pipeline could not write your file.");
     } finally {
-      // Unfreeze controls
       submitCommentBtn.disabled = false;
       commentTextArea.disabled = false;
       submitCommentBtn.innerText = "Post Comment";
