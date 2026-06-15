@@ -29,6 +29,16 @@
             </svg>
             Account
           </a>
+
+          <a href="#" id="open-updates-trigger" class="dropdown-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            <div style="display: flex; align-items: center; gap: 6px; width: 100%;">
+              <span>What's New</span>
+              <span style="width: 6px; height: 6px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 8px #3b82f6; display: inline-block;"></span>
+            </div>
+          </a>
           <a href="faqVault.html" class="dropdown-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
@@ -647,6 +657,56 @@
 
     </div>
   </main>
+
+  <div id="update-modal-overlay" style="position: fixed; inset: 0; background: rgba(5, 5, 5, 0.85); z-index: 99999; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+    <div style="background: rgba(20, 20, 27, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 32px; max-width: 500px; width: 100%; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.7); position: relative;" class="animate-in">
+      
+      <button id="close-updates-btn" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; padding: 4px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 16px;">
+        <div style="background: rgba(59, 130, 246, 0.15); color: #3b82f6; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div>
+          <h2 style="font-size: 1.3rem; font-weight: 800; margin: 0; color: #fff;">System Updates</h2>
+          <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem; margin: 2px 0 0 0;">Database builds & patch revisions</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+
+
+        
+        <div style="border-left: 2px solid #3b82f6; padding-left: 16px; position: relative;">
+          <span style="font-size: 0.75rem; color: #3b82f6; font-weight: 700; text-transform: uppercase;">June 2026 / Build 1.2</span>
+          <h4 style="margin: 4px 0 6px 0; font-size: 1rem; color: #fff;">Discussion Boards, UI Updates and Bug Fixes</h4>
+          <p style="margin: 0; font-size: 0.85rem; color: #a1a1aa; line-height: 1.4;">
+            Wiki pages now have a discussion board on the bottom of each page. Discuss lore, videos, memes and more. The Thugs and TikTok Creators sections have been uodated to respectable themes. There were also a few minor bug fixes. 
+          </p>
+        </div>
+
+        <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 16px; position: relative;">
+          <span style="font-size: 0.75rem; color: rgba(255,255,255,0.4); font-weight: 700; text-transform: uppercase;">June 2026 / Build 1.1</span>
+          <h4 style="margin: 4px 0 6px 0; font-size: 1rem; color: #fff;">Thumbnail Optimization</h4>
+          <p style="margin: 0; font-size: 0.85rem; color: #a1a1aa; line-height: 1.4;">
+            Integrated Cloudinary temporal offset attributes (`so_2`) to sync custom thumbnails across video vault panels.
+          </p>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
 
   <script src="vault.js"></script>
 </body>

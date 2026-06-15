@@ -9,6 +9,50 @@
   margin-left: 4px;
 }
 
+/* ========================================== */
+/* WIKI COMMENT FEED STYLING                  */
+/* ========================================== */
+.wiki-comment-card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.wiki-comment-card:hover {
+  border-color: rgba(255, 255, 255, 0.09) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  transform: translateY(-1px);
+}
+
+.comment-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.comment-username {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.comment-timestamp {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.comment-text-content {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+  word-break: break-word;
+}
+
+
 /* === JUSTFOR.FANS PREMIUM BRANDING === */
 .social-tag-link.jff-premium-btn {
   display: inline-flex;

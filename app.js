@@ -82,18 +82,53 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ==========================================
+  // SYSTEM CHANGELOG MODAL ENGINE (Combined Here)
+  // ==========================================
+  const overlay = document.getElementById("update-modal-overlay");
+  const openTrigger = document.getElementById("open-updates-trigger");
+  const closeBtn = document.getElementById("close-updates-btn");
+
+  // Open overlay toggle
+  if (openTrigger && overlay) {
+    openTrigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      overlay.style.display = "flex";
+      document.body.style.overflow = "hidden"; // Block background crawling
+    });
+  }
+
+  // Safe window closure function
+  const closeUpdatesModal = () => {
+    if (overlay) {
+      overlay.style.display = "none";
+      document.body.style.overflow = ""; // Re-enable touch inputs
+    }
+  };
+
+  if (closeBtn) closeBtn.addEventListener("click", closeUpdatesModal);
+
+  // Close automatically if user taps on the dark background mask area
+  if (overlay) {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeUpdatesModal();
+    });
+  }
 });
 
 // ==========================================
 // 5. Copy to Clipboard Utility
 // ==========================================
+// Kept global outside of DOM scope so inline HTML onclick calls can access it instantly
 window.copyToClipboard = function(event) {
   const copyText = document.getElementById("myInviteLink");
   if (!copyText) return;
   
   navigator.clipboard.writeText(copyText.value);
   
-  const btn = event.target;
+  // FIX: Safely targets the button element block even if the user clicks inner text nodes
+  const btn = event.target.closest('.archive-btn') || event.target;
   const originalText = btn.innerText;
   btn.innerText = "Copied!";
   
