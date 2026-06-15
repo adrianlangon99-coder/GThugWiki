@@ -136,3 +136,49 @@ window.copyToClipboard = function(event) {
     btn.innerText = originalText;
   }, 2000);
 }
+
+
+const videoRotation = [
+  "ScreenRecording_09-01-2025_18-55-00_1_ebmatc",
+  "SPOILER_2F836035-8B81-4370-8C4F-9EAB4346DB92_b9n32m",
+  "SPOILER_ScreenRecording_02-26-2026_10-29-05_1_wdgxdr"
+  // Add more IDs from your list here...
+];
+
+function updateSpotlight() {
+  const now = new Date();
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+  const videoId = videoRotation[dayOfYear % videoRotation.length];
+
+  const container = document.getElementById('spotlight-video');
+  if (container) {
+    // We inject a standard HTML5 video tag using your Cloudinary base URL
+    container.innerHTML = `
+      <video width="100%" height="100%" controls playsinline poster="https://res.cloudinary.com/ddrhamsxu/video/upload/q_auto/f_auto/v1781336352/${videoId}.jpg">
+        <source src="https://res.cloudinary.com/ddrhamsxu/video/upload/q_auto/f_auto/${videoId}.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    `;
+  }
+}
+
+
+function startCountdown() {
+  const timerDisplay = document.getElementById('spotlight-timer');
+  
+  setInterval(() => {
+    const now = new Date();
+    const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const diff = midnight - now;
+
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    timerDisplay.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  }, 1000);
+}
+
+// Run on load
+updateSpotlight();
+startCountdown();
