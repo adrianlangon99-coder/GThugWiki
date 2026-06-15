@@ -1,0 +1,126 @@
+/* ==========================================================================
+   WIKI RULES PAGE STYLESHEET
+   ========================================================================== */
+
+.rules-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.rules-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.rules-header h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+}
+
+.rules-header p {
+  color: var(--text-sub);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Rules Stack Layout */
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.rule-card {
+  display: flex;
+  gap: 20px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.rule-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Numeric Identifier Accent */
+.rule-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent-purple); /* Custom accent color */
+  background: rgba(139, 92, 246, 0.1);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.rule-content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+
+.rule-content p {
+  color: var(--text-sub);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Bottom Policy Callout Box */
+.rules-footer {
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.rules-footer h3 {
+  font-size: 1.1rem;
+  color: #f87171;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rules-footer p {
+  color: var(--text-sub);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.rules-footer a {
+  color: var(--text-main);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.rules-footer a:hover {
+  color: var(--accent-blue);
+}
+
+/* Layout Adjustments for Phones */
+@media (max-width: 550px) {
+  .rule-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .rules-header h2 {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,190 @@
+/* ==========================================
+   wiki.css - Shared Profile Page Configurations
+   ========================================== */
+
+.brand-sub-gold {
+  color: #fbbf24 !important;
+  font-size: 0.95rem !important;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+/* === JUSTFOR.FANS PREMIUM BRANDING === */
+.social-tag-link.jff-premium-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #0f0a0a !important; /* Deep obsidian red-tint base */
+  color: #ffffff !important;
+  border: 1px solid rgba(239, 68, 68, 0.15) !important; /* Soft red brand border */
+  padding: 12px 22px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.03);
+}
+
+/* Red-hot brand glowing highlight state on focus/hover */
+.social-tag-link.jff-premium-btn:hover {
+  background: #190f0f !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Custom embedded graphic asset block */
+.jff-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #ef4444; /* Vivid JustFor.Fans Brand Red */
+  transition: transform 0.2s ease;
+}
+
+.jff-premium-btn:hover .jff-icon-wrap {
+  transform: scale(1.1); /* Subtle heartbeat punch on mouse hover */
+}
+
+.jff-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+.wiki-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-sub);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.wiki-back-btn svg { width: 16px; height: 16px; }
+.wiki-back-btn:active { color: var(--text-main); }
+
+/* MEMORIAL BANNER STYLING */
+.rip-banner-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 40px 24px;
+  background: linear-gradient(180deg, #111115 0%, #07070a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.rip-glow-effect {
+  position: absolute;
+  top: -50%; left: 50%; transform: translateX(-50%);
+  width: 300px; height: 150px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.rip-content h2 {
+  font-size: 0.85rem; color: #fbbf24; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 8px 0;
+}
+.rip-content h1 {
+  font-size: 2.2rem; font-weight: 900; margin: 0;
+  letter-spacing: -0.04em; color: #ffffff;
+}
+.rip-dates {
+  font-size: 0.95rem; color: var(--text-sub); margin: 8px 0 16px;
+  font-weight: 600; letter-spacing: 0.02em;
+}
+.rip-quote {
+  font-style: italic; font-size: 0.9rem; color: #a1a1aa;
+  max-width: 600px; margin: 0 auto; line-height: 1.4;
+}
+
+/* WIKI LAYOUT TWO-COLUMN CONTAINER */
+.wiki-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-top: 24px;
+}
+
+.lore-section { margin-bottom: 32px; }
+.lore-section h2 { font-size: 1.35rem; font-weight: 800; margin: 0 0 12px 0; letter-spacing: -0.02em; color: #ffffff; }
+.lore-section p { font-size: 1rem; color: var(--text-sub); line-height: 1.6; margin: 0 0 16px 0; text-align: justify; }
+
+/* CUSTOM HARDWARE HARD VIDEO FRAME VIEW */
+.custom-video-frame {
+  position: relative;
+  background: #0f0f14;
+  border: 2px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.frame-lens-reflection {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 40%);
+  pointer-events: none; z-index: 5;
+}
+
+.video-container-wrapper {
+  position: relative; width: 100%; height: 0;
+  padding-bottom: 56.25%; /* Perfect 16:9 Cinema Aspect Ratio */
+  border-radius: 12px; overflow: hidden;
+}
+.video-container-wrapper iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+
+.frame-caption-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 4px 2px; font-size: 0.8rem; color: #71717a; font-weight: 600;
+}
+.status-dot {
+  width: 6px; height: 6px; background: #3b82f6; border-radius: 50%;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+/* SIDE INFOBOX LAYOUT */
+.wiki-infobox {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 20px;
+  height: fit-content;
+}
+.infobox-header {
+  font-size: 0.8rem; font-weight: 800; color: #a1a1aa;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--glass-border); padding-bottom: 8px; margin-bottom: 12px;
+}
+.infobox-row {
+  display: flex; justify-content: space-between; padding: 10px 0;
+  font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.infobox-row .label { color: var(--text-sub); }
+.infobox-row .value { color: var(--text-main); font-weight: 600; text-align: right; }
+
+/* SOCIAL ROW LINKS BUTTONS */
+.social-links-container { display: flex; flex-direction: column; gap: 10px; }
+.social-tag-link {
+  display: block; width: 100%; padding: 12px; text-align: center;
+  text-decoration: none !important; font-size: 0.85rem; font-weight: 700; border-radius: 12px;
+}
+.social-tag-link.tiktok { background: #ffffff; color: #000000 !important; }
+.social-tag-link.youtube { background: rgba(239, 68, 68, 0.1); color: #f87171 !important; border: 1px solid rgba(239, 68, 68, 0.2); }
+
+/* MEDIA RESPONSIVE BREAKPOINT GRID TO 2 COLUMN ON PC SCREEN LAYOUTS */
+@media (min-width: 850px) {
+  .wiki-layout-grid {
+    grid-template-columns: 1fr 300px;
+  }
+}

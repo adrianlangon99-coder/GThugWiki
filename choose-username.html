@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Choose Username | ThugWiki</title>
+  <link rel="stylesheet" href="signup.css"> </head>
+<body>
+
+  <nav class="auth-nav">
+    <div class="nav-spacer"></div>
+    <h1 class="site-brand">ThugWiki</h1>
+    <div class="nav-spacer"></div>
+  </nav>
+
+  <main class="auth-main">
+    <div class="glow-orb signup-glow"></div>
+
+    <div class="auth-card animate-in">
+      <div class="auth-header">
+        <h2>Claim Your Identity</h2>
+        <p>Choose a unique username to represent you across the wiki archives.</p>
+      </div>
+
+      <form id="username-form" class="auth-form">
+        
+        <div class="input-group">
+          <label for="username">Username</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <input type="text" id="username" name="username" placeholder="ThugScholar99" required minlength="3" maxlength="20">
+          </div>
+        </div>
+
+        <div id="username-error" class="error-text" style="color: #f87171; font-size: 0.85rem; text-align: center; margin-top: 4px; display: none;"></div>
+
+        <button type="submit" id="submit-btn" class="btn-primary auth-submit">Save & Enter</button>
+      </form>
+    </div>
+  </main>
+
+  <script type="module" src="choose-username.js"></script>
+</body>
+</html>

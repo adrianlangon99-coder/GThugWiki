@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Report Content | ThugWiki</title>
+  <!-- Global styles -->
+  <link rel="stylesheet" href="faq.css">
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+
+  <!-- Minimal Navigation -->
+  <nav class="auth-nav">
+    <a href="app.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back
+    </a>
+    <h1 class="site-brand">ThugWiki</h1>
+    <div class="nav-spacer"></div>
+  </nav>
+
+  <!-- Main Report Card Layout -->
+  <main class="report-main">
+    <div class="report-card animate-in">
+      <div class="report-header">
+        <h2>Report Content</h2>
+        <p>Help us keep the platform safe. Flag violations below.</p>
+      </div>
+
+      <form id="report-form" class="report-form">
+        
+        <!-- Dropdown Selector -->
+        <div class="input-group">
+          <label for="report-reason">Reason for Report</label>
+          <div class="select-wrapper">
+            <select id="report-reason" name="reason" required>
+              <option value="" disabled selected>Select a reason...</option>
+              <option value="Inappropriate Content">Inappropriate Content</option>
+              <option value="Copyright / Intellectual Property">Copyright Infringement</option>
+              <option value="Harassment or Hate Speech">Harassment / Hate Speech</option>
+              <option value="Spam / Broken Link">Spam / Broken Link</option>
+              <option value="Other Violation">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Description Box -->
+        <div class="input-group">
+          <label for="report-details">Links & Explanation</label>
+          <textarea id="report-details" name="details" placeholder="Provide URLs or detail the issue here..." required></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" class="report-submit">Submit Report</button>
+        
+        <!-- Status Notification Box -->
+        <div id="form-status" class="form-status"></div>
+      </form>
+    </div>
+  </main>
+
+  <script src="report.js"></script>
+</body>
+</html>

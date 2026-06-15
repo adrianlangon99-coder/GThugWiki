@@ -1,0 +1,154 @@
+/* ==========================================================================
+   REPORT PAGE SPECIFIC STYLESHEET
+   ========================================================================== */
+
+.report-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Glassmorphic Report Container */
+.report-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 40px 32px;
+  z-index: 2;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.report-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.report-header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.report-header p {
+  color: var(--text-sub);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+/* Form Controls Setup */
+.select-wrapper {
+  position: relative;
+}
+
+/* Inject Custom Down Arrow Graphic */
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+select option {
+  background-color: #0b0b0e;
+  color: #ffffff;
+}
+
+textarea, select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 14px;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+textarea:focus, select:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Monochromatic Premium Submit Button */
+.report-submit {
+  background: #ffffff;
+  color: #050505;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.report-submit:hover { opacity: 0.9; }
+.report-submit:active { transform: scale(0.97); }
+.report-submit:disabled { background: #475569; color: #ffffff; cursor: not-allowed; }
+
+/* Inline Alerts */
+.form-status {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 12px;
+  display: none;
+  margin-top: 10px;
+}
+
+.form-status.success { display: block; background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.form-status.error { display: block; background: rgba(239, 68, 68, 0.15); color: #f87171; }
+
+@media (max-width: 480px) {
+  .report-card { padding: 32px 24px; border-radius: 20px; }
+}

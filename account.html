@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Account | ThugWiki</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="app-top-bar">
+    <a href="app.html" style="color: var(--text-sub); text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: 600; width: 80px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back
+    </a>
+    <h1 class="site-brand">Account</h1>
+    <div style="width: 80px;"></div>
+  </nav>
+
+  <main class="wiki-container animate-in">
+    
+    <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 24px; max-width: 500px; margin: 0 auto; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);">
+      
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" style="color: var(--text-sub);">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div>
+          <h2 id="display-username" style="margin: 0; font-size: 1.5rem; color: var(--text-main); font-weight: 800; letter-spacing: -0.02em;">Loading...</h2>
+          <p id="display-email" style="margin: 4px 0 0 0; color: var(--text-sub); font-size: 0.9rem;">Fetching details...</p>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid var(--glass-border); padding-top: 20px; margin-bottom: 24px;">
+        <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">Wiki Member Since</p>
+        <p id="display-date" style="margin: 4px 0 0 0; font-weight: 600; color: var(--text-main);">--</p>
+      </div>
+
+      <button id="logout-btn" style="width: 100%; background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); padding: 14px; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: transform 0.1s ease, background 0.2s ease;">
+        Sign Out
+      </button>
+
+    </div>
+
+  </main>
+
+  <script type="module" src="account.js"></script>
+</body>
+</html>

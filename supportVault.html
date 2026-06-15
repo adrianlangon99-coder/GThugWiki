@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Support | ThugWiki</title>
+  <link rel="stylesheet" href="faq.css">
+
+  <link rel="stylesheet" href="support.css">
+</head>
+<body>
+
+  <!-- Minimal Nav -->
+  <nav class="auth-nav">
+    <a href="vault.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back
+    </a>
+    <h1 class="site-brand">ThugWiki</h1>
+    <div class="nav-spacer"></div>
+  </nav>
+
+  <main class="support-main">
+    <div class="support-card animate-in">
+      <div class="support-header">
+        <h2>Contact Support</h2>
+        <p>Experiencing an issue? Let us know below.</p>
+      </div>
+
+      <form id="support-form" class="support-form">
+        
+        <!-- Email Input -->
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="name@example.com" required>
+        </div>
+
+        <!-- Issue Dropdown -->
+        <div class="input-group">
+          <label for="issue">Issue Type</label>
+          <div class="select-wrapper">
+            <select id="issue" name="issue" required>
+              <option value="" disabled selected>Select an issue...</option>
+              <option value="Account/Login Help">Account/Login Help</option>
+              <option value="Report a Bug">Report a Bug</option>
+              <option value="Content Takedown Request">Content Takedown Request</option>
+              <option value="General Inquiry">General Inquiry</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Message Area -->
+        <div class="input-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Please describe your issue in detail..." required></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" class="support-submit">Send Message</button>
+        
+        <!-- Success/Error Feedback -->
+        <div id="form-status" class="form-status"></div>
+      </form>
+    </div>
+  </main>
+
+  <script src="support.js"></script>
+</body>
+</html>

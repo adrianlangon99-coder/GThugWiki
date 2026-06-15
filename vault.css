@@ -1,0 +1,185 @@
+/* vault.css - Master System Sheet */
+
+/* Page Background */
+body {
+  background-color: #050508; 
+}
+
+.auth-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.top-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-sub);
+}
+.profile-avatar svg { width: 18px; height: 18px; }
+
+.vault-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.site-brand {
+  background: linear-gradient(135deg, #ffffff 0%, var(--text-sub) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block; 
+}
+
+.brand-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: none !important;      
+  -webkit-background-clip: unset;    
+  -webkit-text-fill-color: #8b5cf6 !important; 
+  color: #8b5cf6 !important;         
+}
+
+/* Feed Layout Wrapper */
+.feed-header-wrapper {
+  max-width: 700px; 
+  margin: 0 auto 20px auto;
+}
+
+.back-to-app-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-sub);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 8px 16px 8px 0;
+  transition: color 0.2s ease;
+}
+.back-to-app-btn svg { width: 18px; height: 18px; }
+.back-to-app-btn:hover { color: var(--text-main); }
+
+/* === NATIVE STANDALONE AD BANNER === */
+.vault-ad-banner {
+  position: relative;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(5, 5, 5, 0.6) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3); 
+  border-radius: 16px;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.ad-glow {
+  position: absolute;
+  top: -50px; right: -50px; width: 150px; height: 150px;
+  background: rgba(59, 130, 246, 0.4);
+  filter: blur(60px); border-radius: 50%; pointer-events: none;
+}
+
+.ad-content { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 14px; }
+.ad-badge {
+  align-self: flex-start; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.05em; color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);
+  padding: 4px 10px; border-radius: 12px; background: rgba(255, 255, 255, 0.05);
+}
+.ad-title { font-size: 1.15rem; font-weight: 800; color: #ffffff; margin-bottom: 6px; }
+.ad-desc { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; }
+.ad-cta-btn {
+  align-self: flex-start; background: #3b82f6; color: #ffffff; text-decoration: none;
+  padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 0.95rem;
+  transition: background 0.2s ease, transform 0.2s ease; margin-top: 4px;
+}
+.ad-cta-btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+/* === REDDIT STYLE FEED === */
+.vault-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 700px; 
+  margin: 0 auto;
+}
+
+.vault-post {
+  background: rgba(255, 255, 255, 0.03); 
+  border: 1px solid rgba(255, 255, 255, 0.08); 
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.post-avatar {
+  width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+  display: flex; align-items: center; justify-content: center; color: #a1a1aa;
+}
+.post-avatar svg { width: 16px; height: 16px; }
+.post-meta { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+.post-author { font-weight: 600; color: #e2e8f0; }
+.post-time { color: #64748b; }
+.post-title { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 14px; line-height: 1.4; }
+
+.thumbnail-placeholder {
+  width: 100%; aspect-ratio: 16/9; background: #111116;
+  border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 16px;
+}
+
+.post-actions { display: flex; align-items: center; gap: 12px; }
+.action-btn, .action-stat {
+  display: flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.05); color: #cbd5e1; padding: 8px 14px;
+  border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+}
+.action-stat { cursor: default; background: none; border-color: transparent; padding: 8px 4px; }
+.action-btn svg, .action-stat svg { width: 18px; height: 18px; }
+.action-btn:hover { background: rgba(255, 255, 255, 0.1); color: #ffffff; }
+.action-btn.download { margin-left: auto; }
+
+/* === NATIVE DISGUISED AD POSTS === */
+.vault-post.promoted-post {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.promoted-icon {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+.promoted-post .post-author { color: #94a3b8; font-size: 0.85rem; letter-spacing: 0.02em; }
+.promoted-media-link { text-decoration: none; display: block; width: 100%; }
+.promoted-thumb { position: relative; cursor: pointer; transition: border-color 0.2s ease; }
+.promoted-thumb:hover { border-color: rgba(59, 130, 246, 0.3); }
+
+.ad-media-overlay {
+  position: absolute; bottom: 12px; right: 12px; background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff;
+  padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; pointer-events: none;
+}
+
+/* Responsive Media Controls */
+@media (min-width: 600px) {
+  .vault-ad-banner { padding: 24px; }
+  .ad-content { flex-direction: row; align-items: center; justify-content: space-between; }
+  .ad-text-wrap { flex: 1; margin: 0 20px; }
+  .ad-badge { align-self: center; }
+  .ad-cta-btn { align-self: center; margin-top: 0; white-space: nowrap; }
+}

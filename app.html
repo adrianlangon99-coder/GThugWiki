@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>ThugWiki</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="age-gate-overlay" style="position: fixed; inset: 0; background: #050505; z-index: 99999; display: none; align-items: center; justify-content: center; padding: 20px;">
+  <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 32px; max-width: 440px; width: 100%; text-align: center; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); box-shadow: 0 20px 50px rgba(0,0,0,0.9);">
+    
+    <div style="width: 56px; height: 56px; background: rgba(239, 68, 68, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #f87171;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="28" height="28">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+    </div>
+
+    <h2 style="font-size: 1.6rem; font-weight: 800; margin: 0 0 12px 0; letter-spacing: -0.02em;">NSFW Content Warning</h2>
+    <p style="color: #a1a1aa; font-size: 0.95rem; line-height: 1.5; margin: 0 0 28px 0;">
+      You must be <span style="color: #3b82f6; font-weight: 700;">18 years of age or older</span> to enter ThugWiki. This community contains adult media, and explicit themes.
+    </p>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <button id="age-bypass-btn" style="width: 100%; background: #ffffff; color: #000000; border: none; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: transform 0.1s ease;">
+        I am 18 or older - Enter
+      </button>
+      
+      <a href="https://www.google.com" style="width: 100%; background: rgba(255,255,255,0.08); color: #f87171; text-decoration: none; padding: 14px; border-radius: 14px; font-weight: 600; font-size: 0.95rem; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
+        Exit
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+<nav class="app-top-bar">
+    <h1 class="site-brand">ThugWiki</h1>
+    
+    <div class="top-bar-actions">
+
+      <div class="profile-menu-container">
+        <div class="profile-avatar" id="profile-avatar-trigger" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        
+        <div class="profile-dropdown" id="profile-dropdown-menu">
+          <a href="account.html" class="dropdown-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            Account
+          </a>
+
+          <a href="faq.html" class="dropdown-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            FAQ
+          </a>
+          <a href="rules.html" class="dropdown-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Rules
+          </a>
+          <a href="support.html" class="dropdown-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            Support
+          </a>
+          <a href="report.html" class="dropdown-item danger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            Report
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <main class="wiki-container">
+    
+    <section class="app-section animate-in">
+      <div class="scroll-row">
+        
+        <div class="scroll-card announcement-card">
+          <div class="icon-wrapper alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <h3>Early Access</h3>
+          <p>We are currently in early development. Expect frequent updates and new lore drops.</p>
+        </div>
+
+        <!-- Report Bugs Card linking to support.html -->
+        <div class="scroll-card announcement-card">
+          <div class="icon-wrapper bug">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            </svg>
+          </div>
+          <h3>Report Bugs</h3>
+          <p>Notice a glitch or incorrect lore? File a report here.</p>
+          <a href="support.html" class="card-action-btn" style="text-decoration: none; text-align: center; display: block;">Report Issue</a>
+        </div>
+
+        <!-- Community Rules Card linking to rules.html -->
+        <div class="scroll-card announcement-card">
+          <div class="icon-wrapper rules">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>Community Rules</h3>
+          <p>Read our guidelines carefully to avoid a community ban.</p>
+          <a href="rules.html" class="card-action-btn" style="text-decoration: none; text-align: center; display: block;">Read Rules</a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="app-section animate-in delay-1">
+      <div class="section-header-row">
+        <h2 class="section-title">Thugs</h2>
+      </div>
+      <div class="scroll-row">
+        
+        <a href="king.html" class="scroll-card thug-card">
+          <img src="img/king.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="thug-info">
+            <h3>Yes King</h3>
+            <p>The Undisputed King</p>
+          </div>
+        </a>
+
+        <a href="jacobi.html" class="scroll-card thug-card">
+          <img src="img/jacobi.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="thug-info">
+            <h3>Jacobi DSP</h3>
+            <p>The Crown Prince</p>
+          </div>
+        </a>
+
+        <a href="duke.html" class="scroll-card thug-card">
+          <img src="img/dukecage.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="thug-info">
+            <h3>Duke Cage</h3>
+            <p>The Taboo Poz Talk Sex Addict</p>
+          </div>
+        </a>
+
+        <a href="dreamy.html" class="scroll-card thug-card">
+          <img src="img/dreamy.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="thug-info">
+            <h3>Dreamybull</h3>
+            <p>King of Sitting on Dildos</p>
+          </div>
+        </a>
+
+        <a href="tom.html" class="scroll-card thug-card">
+          <img src="img/tom.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="thug-info">
+            <h3>Tom Pearl</h3>
+            <p>The Human Toilet</p>
+          </div>
+        </a>
+
+
+
+      </div>
+    </section>
+
+    <section class="app-section animate-in delay-2">
+      <div class="section-header-row">
+        <h2 class="section-title">Top Creators</h2>
+      </div>
+      <div class="scroll-row">
+        
+        <div class="scroll-card creator-card">
+          <img src="img/kitty.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>Kitty The Cat</h3>
+            <a href="https://www.tiktok.com/@kittyy.the.cat?_r=1&_t=ZP-974ykBcBOAg" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+        <div class="scroll-card creator-card">
+          <img src="img/simba.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>Thug Cat</h3>
+            <a href="https://www.tiktok.com/@thugcat.v2?_r=1&_t=ZP-974ydq8TYmV" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+        <div class="scroll-card creator-card">
+          <img src="img/gaycat.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>Gay Cat</h3>
+            <a href="https://www.tiktok.com/@loveandlighttvcat?_r=1&_t=ZP-974yRAXbChS" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+        <div class="scroll-card creator-card">
+          <img src="img/kingbird.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>King Bird</h3>
+            <a href="https://www.tiktok.com/@2014.ford.focus?_r=1&_t=ZP-974yR0Rhl9T" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+        <div class="scroll-card creator-card">
+          <img src="img/yeskingprod.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>Yes King Prod.</h3>
+            <a href="https://www.tiktok.com/@yeskingproductions?_r=1&_t=ZP-974yVmArrZO" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+        <div class="scroll-card creator-card">
+          <img src="img/orange.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>Oranginacat</h3>
+            <a href="https://www.tiktok.com/@oranginacat?_r=1&_t=ZP-974ycKsyLok" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+        <div class="scroll-card creator-card">
+          <img src="img/corrupt.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>King Corrupt</h3>
+            <a href="https://www.tiktok.com/@slxxmmed2.0?_r=1&_t=ZP-974yYD1o56s" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+        <div class="scroll-card creator-card">
+          <img src="img/zay.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>Zay2Locked</h3>
+            <a href="https://www.tiktok.com/@zay2lockedd?_r=1&_t=ZP-974yguP5mUp" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+        <div class="scroll-card creator-card">
+          <img src="img/bigstep.jpeg" alt="" class="card-bg">
+          <div class="card-overlay-gradient"></div>
+          <div class="creator-info">
+            <h3>Big Stepper Prod.</h3>
+            <a href="https://www.tiktok.com/@bigstepperproductions?_r=1&_t=ZP-974yhVraZtm" target="_blank" rel="noopener" class="creator-link-btn">View TikTok</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="app-section animate-in delay-2">
+      <div class="archive-banner promo-style">
+        <div class="archive-content">
+
+          <h3>Looking for <span class="highlight-text">archives?</span></h3>
+          <p>Access 100's of classic videos from various creators.</p>
+          <a href="vault.html" class="archive-btn">Open Vault</a>
+        </div>
+        <div class="archive-media-placeholder">
+          <img src="img/vault.png" alt="Archive Graphics Placeholder" class="promo-image">
+        </div>
+      </div>
+    </section>
+
+<section class="app-section animate-in delay-2">
+  <div class="community-banner">
+    <div class="archive-content">
+
+      <h3>Join a <span class="highlight-text">community</span></h3>
+      <p>Connect with other lore enthusiasts and share your findings.</p>
+      <a href="community.html" class="archive-btn">View Communities</a>
+    </div>
+        <div class="archive-media-placeholder">
+          <img src="img/community.png" alt="Archive Graphics Placeholder" class="promo-image">
+        </div>
+  </div>
+</section>
+
+<!-- Referral Banner -->
+<section class="app-section animate-in delay-3">
+  <div class="invite-banner">
+    <div class="archive-content">
+
+      <h3>Invite the <span class="highlight-text">squad</span></h3>
+      <p>Share this link to grow the community.</p>
+      
+      <!-- Clean, static link box -->
+      <div class="generated-link-box">
+        <input type="text" value="thugwiki.com" id="myInviteLink" readonly>
+        <button class="archive-btn" onclick="copyToClipboard(event)">Copy</button>
+      </div>
+
+    </div>
+    <div class="archive-media-placeholder">
+      <img src="img/invite.png" alt="Invite Friends" class="promo-image">
+    </div>
+  </div>
+</section>
+
+
+
+
+  </main>
+
+  <script src="app.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD_Ackc4JfTZYWJHYNCWxLafnwAsWqJrFQ",
+      authDomain: "thugwiki-ffc4f.firebaseapp.com",
+      projectId: "thugwiki-ffc4f",
+      storageBucket: "thugwiki-ffc4f.firebasestorage.app",
+      messagingSenderId: "173306478841",
+      appId: "1:173306478841:web:ce40297f76906e6dc6e228",
+      measurementId: "G-JFWEBT2Z47"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User authorized:", user.email);
+      } else {
+        // window.location.href = 'login.html'; //
+      }
+    });
+  </script>
+</body>
+</html>
