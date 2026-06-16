@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const userDoc = await getDoc(userDocRef);
 
       // Routing logic: Check if they already went through the "Choose Username" phase
-      // Routing logic: Check if they already went through the "Choose Username" phase
       if (userDoc.exists() && userDoc.data().username) {
         
         // --- ADD THIS ADMIN CHECK ---
