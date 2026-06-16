@@ -14,7 +14,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Your exact selected 6 questions (1, 2, 5, 6, 7, 10)
 const pollDatabase = [
   { q: "Who is your favorite thug?", opts: ["Yes King", "Duke Cage", "Tom Pearl", "Dreamybull"] },
   { q: "How many thugs do you know?", opts: ["1-2", "2-5", "5-10", "10+"] },
@@ -24,21 +23,24 @@ const pollDatabase = [
   { q: "Should we add a user submission panel for new clips?", opts: ["Yes, immediately", "No, keep it Admin only", "Only for verified users", "Undecided"] }
 ];
 
+// 1. Calculate the active poll globally so all functions can use it safely
 const now = new Date();
 const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
 const activePollIndex = dayOfYear % pollDatabase.length;
 const activePoll = pollDatabase[activePollIndex];
 const pollId = `daily-poll-${activePollIndex}`;
 
-const questionHeader = document.getElementById("poll-question-text");
-const optionsContainer = document.getElementById("poll-options-container");
+// 2. Main DOM Handler
+document.addEventListener('DOMContentLoaded', () => {
+  const questionHeader = document.getElementById("poll-question-text");
+  const optionsContainer = document.getElementById("poll-options-container");
 
-function initPollStream() {
   if (!questionHeader || !optionsContainer) return;
   
   questionHeader.innerText = activePoll.q;
   const pollDocRef = doc(db, "polls", pollId);
   
+  // Keep the real-time snapshot connection open
   onSnapshot(pollDocRef, (docSnap) => {
     let votes = {};
     if (docSnap.exists()) votes = docSnap.data().votes || {};
@@ -56,7 +58,6 @@ function initPollStream() {
       const row = document.createElement("div");
       row.style.position = "relative";
       row.style.width = "100%";
-
 
       if (hasVoted) {
         row.innerHTML = `
@@ -80,14 +81,16 @@ function initPollStream() {
         btn.style.fontSize = "0.95rem";
         btn.style.cursor = "pointer";
 
+        // Call global function safely
         btn.addEventListener("click", () => handleVoteSubmit(opt));
         row.appendChild(btn);
       }
       optionsContainer.appendChild(row);
     });
   });
-}
+});
 
+// 3. Global Transaction Function (Moved completely out of the load loop scope)
 async function handleVoteSubmit(selectedOption) {
   const pollDocRef = doc(db, "polls", pollId);
   localStorage.setItem(`voted-${pollId}`, "true");
@@ -101,9 +104,7 @@ async function handleVoteSubmit(selectedOption) {
       transaction.set(pollDocRef, { votes: currentVotes }, { merge: true });
     });
   } catch (error) {
-    console.error(error);
-    localStorage.removeItem(`voted-${pollId}`);
+    console.error("Poll transaction error:", error);
+    localStorage.removeItem(`voted-${pollId}`); // Reset restriction token if transaction fails
   }
 }
-
-initPollStream();
