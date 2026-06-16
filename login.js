@@ -53,10 +53,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const userDoc = await getDoc(userDocRef);
 
       // Routing logic: Check if they already went through the "Choose Username" phase
+      // Routing logic: Check if they already went through the "Choose Username" phase
       if (userDoc.exists() && userDoc.data().username) {
+        
+        // --- ADD THIS ADMIN CHECK ---
+        // Your Admin UIDs
+        const adminUidWhitelist = ["c597pc8i0JSJ2gt9iA5WnXyc7n22"]; 
+        
+        if (adminUidWhitelist.includes(user.uid)) {
+          localStorage.setItem('thug_admin_authenticated', 'true');
+          console.log("Admin privileges active.");
+        } else {
+          localStorage.removeItem('thug_admin_authenticated');
+        }
+        // ----------------------------
+
         console.log("Existing user recognized. Redirecting to dashboard...");
         window.location.href = 'app.html'; 
-      } else {
+      }
+ else {
         console.log("New profile or missing username detected. Redirecting to username setup...");
         window.location.href = 'choose-username.html';
       }
