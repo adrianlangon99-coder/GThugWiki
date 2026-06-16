@@ -82,13 +82,23 @@ async function loadPageContent() {
 loadPageContent();
 
 // ==========================================
-// 2. Auth Event State Listener (CLEANED & FIXED)
+// 2. Auth Event State Listener (UPDATED TO FETCH FIRESTORE USERNAME)
 // ==========================================
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
-    // Strictly uses chosen profile name, NEVER leaks account emails
-    currentDisplayName = user.displayName || "Anonymous Thug";
-    
+    // FETCH THE CUSTOM USERNAME FROM FIRESTORE
+    try {
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists() && userDoc.data().username) {
+        currentDisplayName = userDoc.data().username;
+      } else {
+        currentDisplayName = "Anonymous Thug";
+      }
+    } catch (e) {
+      console.error("Error fetching username:", e);
+      currentDisplayName = "Anonymous Thug";
+    }
+
     if (userIdentityHeader) {
       userIdentityHeader.innerHTML = `Posting as: <span style="color: #3b82f6; font-weight: 700;">${currentDisplayName}</span>`;
     }
@@ -100,7 +110,6 @@ onAuthStateChanged(auth, (user) => {
     // Secure Admin access validation
     if (adminUidWhitelist.includes(user.uid)) {
       isAdmin = true;
-      console.log("Admin signature verified. Launching panel controls...");
       if (adminWorkspaceTray) adminWorkspaceTray.style.display = "block";
     } else {
       isAdmin = false;
@@ -121,6 +130,7 @@ onAuthStateChanged(auth, (user) => {
     if (adminWorkspaceTray) adminWorkspaceTray.style.display = "none";
   }
 });
+
 
 // ==========================================
 // 3. Admin Inline Page Editing Functions
