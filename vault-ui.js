@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ==========================================
   // 1. Announcement Card Buttons
+  // ==========================================
   const actionButtons = document.querySelectorAll('.card-action-btn');
   actionButtons.forEach(button => {
     button.addEventListener('click', (e) => {
@@ -9,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ==========================================
   // 2. Discussion Join Buttons
+  // ==========================================
   const joinButtons = document.querySelectorAll('.join-btn');
   joinButtons.forEach(button => {
     button.addEventListener('click', (e) => {
@@ -26,9 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Profile Dropdown Functionality
+  // ==========================================
+  // 3. Profile Dropdown & Admin Gate Logic
+  // ==========================================
   const avatarTrigger = document.getElementById('profile-avatar-trigger');
   const dropdownMenu = document.getElementById('profile-dropdown-menu');
+  const adminLink = document.querySelector('.admin-only-link');
+
+  // Check browser storage instantly to see if you are authenticated as admin
+  const isAdmin = localStorage.getItem('thug_admin_authenticated');
+  if (isAdmin === 'true' && adminLink) {
+    adminLink.style.display = 'flex'; // Secretly reveal link to you
+  }
 
   if (avatarTrigger && dropdownMenu) {
     avatarTrigger.addEventListener('click', (event) => {
@@ -46,7 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==========================================
   // 4. System Changelog Modal Engine
+  // ==========================================
   const overlay = document.getElementById("update-modal-overlay");
   const openTrigger = document.getElementById("open-updates-trigger");
   const closeBtn = document.getElementById("close-updates-btn");

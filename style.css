@@ -584,3 +584,45 @@ html, body {
     margin-top: -20px;
   }
 }
+/* ========================================== */
+/* DAILY POLL SECTION CSS                     */
+/* ========================================== */
+.poll-section {
+  margin: 32px auto;
+  max-width: 800px; /* Match the spotlight section width */
+  padding: 0 20px;
+}
+
+.thug-poll-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Ensure the poll buttons match your other button styles */
+#poll-options-container button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: #ffffff;
+  padding: 14px 18px;
+  border-radius: 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#poll-options-container button:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--accent);
+}
+
+/* Match the Results progress bar to your UI theme */
+#poll-options-container > div > div {
+  background: rgba(59, 130, 246, 0.2) !important;
+}
