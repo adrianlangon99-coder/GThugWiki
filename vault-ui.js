@@ -35,12 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const avatarTrigger = document.getElementById('profile-avatar-trigger');
   const dropdownMenu = document.getElementById('profile-dropdown-menu');
-  const adminLink = document.querySelector('.admin-only-link');
 
-  // Check browser storage instantly to see if you are authenticated as admin
-  const isAdmin = localStorage.getItem('thug_admin_authenticated');
-  if (isAdmin === 'true' && adminLink) {
-    adminLink.style.display = 'flex'; // Secretly reveal link to you
+  // A more robust way to handle the admin link, even if it loads late
+  function unlockAdminLink() {
+    const adminLink = document.querySelector('.admin-only-link');
+    const isAdmin = localStorage.getItem('thug_admin_authenticated');
+    
+    if (isAdmin === 'true' && adminLink) {
+      adminLink.style.display = 'flex';
+    }
+  }
+
+  // Run immediately
+  unlockAdminLink();
+
+  // Watch for changes in case the menu is rendered dynamically
+  const observer = new MutationObserver(unlockAdminLink);
+  if (dropdownMenu) {
+    observer.observe(dropdownMenu, { childList: true, subtree: true });
   }
 
   if (avatarTrigger && dropdownMenu) {
@@ -48,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
       event.stopPropagation(); 
       const isActive = dropdownMenu.classList.toggle('is-active');
       avatarTrigger.setAttribute('aria-expanded', isActive);
+      // Re-run the unlock just to be safe when the menu opens
+      unlockAdminLink();
     });
 
     document.addEventListener('click', (event) => {

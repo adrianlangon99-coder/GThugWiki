@@ -9,6 +9,30 @@
   <title>ThugWiki Vault</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="vault.css">
+<style>
+
+/* Styling for the Upload link to match the dropdown items */
+.admin-only-link {
+  display: none !important; /* Managed by your vault-ui.js */
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.admin-only-link:hover {
+  background: rgba(251, 191, 36, 0.1); /* Subtle gold hover background */
+}
+
+.admin-only-link.is-visible {
+  display: flex !important;
+}
+
+
+</style>
 </head>
 <body>
 
@@ -25,6 +49,18 @@
         </div>
         
         <div class="profile-dropdown" id="profile-dropdown-menu">
+
+<a href="thug-admin.html" class="dropdown-item admin-only-link" style="border-left: 2px solid #fbbf24;">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #fbbf24; width: 18px; height: 18px;">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="17 8 12 3 7 8"></polyline>
+    <line x1="12" y1="3" x2="12" y2="15"></line>
+  </svg>
+  <span style="color: #fbbf24; font-weight: 500;">Upload</span>
+</a>
+
+
+
           <a href="accountVault.html" class="dropdown-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -33,14 +69,8 @@
             Account
           </a>
 
-          <a href="thug-admin.html" class="dropdown-item admin-only-link" style="display: none; border-left: 2px solid #fbbf24;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #fbbf24;">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="17 8 12 3 7 8"></polyline>
-              <line x1="12" y1="3" x2="12" y2="15"></line>
-            </svg>
-            <span style="color: #fbbf24; font-weight: 700;">Upload</span>
-          </a>
+
+
 
           <a href="#" id="open-updates-trigger" class="dropdown-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
