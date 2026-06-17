@@ -184,3 +184,38 @@ function startCountdown() {
 // Run on load
 updateSpotlight();
 startCountdown();
+
+
+
+  // ==========================================
+  // UTILITY INTERACTIVE MODAL ENGINES
+  // ==========================================
+  const bugOverlay = document.getElementById("bug-modal-overlay");
+  const bugTrigger = document.getElementById("open-bug-trigger");
+  const bugClose = document.getElementById("close-bug-btn");
+
+  const rulesOverlay = document.getElementById("rules-modal-overlay");
+  const rulesTrigger = document.getElementById("open-rules-trigger");
+  const rulesClose = document.getElementById("close-rules-btn");
+
+  // Core Open/Close Toggle Logics
+  const toggleModal = (modal, displayState) => {
+    if (modal) {
+      modal.style.display = displayState;
+      document.body.style.overflow = displayState === "flex" ? "hidden" : "";
+    }
+  };
+
+  // Bug Observers
+  if (bugTrigger) bugTrigger.addEventListener("click", () => toggleModal(bugOverlay, "flex"));
+  if (bugClose) bugClose.addEventListener("click", () => toggleModal(bugOverlay, "none"));
+  if (bugOverlay) {
+    bugOverlay.addEventListener("click", (e) => { if (e.target === bugOverlay) toggleModal(bugOverlay, "none"); });
+  }
+
+  // Rules Observers
+  if (rulesTrigger) rulesTrigger.addEventListener("click", () => toggleModal(rulesOverlay, "flex"));
+  if (rulesClose) rulesClose.addEventListener("click", () => toggleModal(rulesOverlay, "none"));
+  if (rulesOverlay) {
+    rulesOverlay.addEventListener("click", (e) => { if (e.target === rulesOverlay) toggleModal(rulesOverlay, "none"); });
+  }

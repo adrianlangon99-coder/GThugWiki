@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,12 +37,10 @@
   </div>
 </div>
 
-
 <nav class="app-top-bar">
     <h1 class="site-brand">ThugWiki</h1>
     
     <div class="top-bar-actions">
-
       <div class="profile-menu-container">
         <div class="profile-avatar" id="profile-avatar-trigger" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -54,9 +50,6 @@
         </div>
         
         <div class="profile-dropdown" id="profile-dropdown-menu">
-
-
-
           <a href="account.html" class="dropdown-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -74,7 +67,6 @@
               <span style="width: 6px; height: 6px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 8px #3b82f6; display: inline-block;"></span>
             </div>
           </a>
-
 
           <a href="faq.html" class="dropdown-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -104,71 +96,22 @@
             </svg>
             Report
           </a>
-
-
-
         </div>
       </div>
-
     </div>
   </nav>
 
-
   <main class="wiki-container">
     
-    <section class="app-section animate-in">
-      <div class="scroll-row">
-        
-        <div class="scroll-card announcement-card">
-          <div class="icon-wrapper alert">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-          </div>
-          <h3>Early Access</h3>
-          <p>We are currently in early development. Expect frequent updates and new lore drops.</p>
-        </div>
-
-        <!-- Report Bugs Card linking to support.html -->
-        <div class="scroll-card announcement-card">
-          <div class="icon-wrapper bug">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-            </svg>
-          </div>
-          <h3>Report Bugs</h3>
-          <p>Notice a glitch or incorrect lore? File a report here.</p>
-          <a href="support.html" class="card-action-btn" style="text-decoration: none; text-align: center; display: block;">Report Issue</a>
-        </div>
-
-        <!-- Community Rules Card linking to rules.html -->
-        <div class="scroll-card announcement-card">
-          <div class="icon-wrapper rules">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-          </div>
-          <h3>Community Rules</h3>
-          <p>Read our guidelines carefully to avoid a community ban.</p>
-          <a href="rules.html" class="card-action-btn" style="text-decoration: none; text-align: center; display: block;">Read Rules</a>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <section class="app-section animate-in delay-1">
-      <div class="section-header-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+    <section class="dashboard-section animate-in delay-1">
+      <div class="section-header-row">
         <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="color: #fbbf24; filter: drop-shadow(0px 0px 6px rgba(251, 191, 36, 0.5));">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
-        <h2 class="section-title" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Thugs</h2>
+        <h2 class="section-title">Thugs</h2>
       </div>
 
       <div class="scroll-row">
-        
         <a href="king.html" class="scroll-card thug-card premium-star-card">
           <img src="img/king.jpeg" alt="Yes King" class="card-bg">
           <div class="card-overlay-gradient"></div>
@@ -213,76 +156,109 @@
             <p>The Human Toilet</p>
           </div>
         </a>
+      </div>
+    </section>
+
+    <section class="dashboard-section animate-in delay-2">
+      <div class="archive-banner promo-style">
+        <div class="archive-content">
+          <h3>Looking for <span class="highlight-text">archives?</span></h3>
+          <p>Access 100's of classic videos from various creators.</p>
+          <a href="vault.html" class="archive-btn">Open Vault</a>
+        </div>
+        <div class="archive-media-placeholder">
+          <img src="img/vault.png" alt="Archive Graphics Placeholder" class="promo-image">
+        </div>
+      </div>
+    </section>
+
+
+    <section class="dashboard-section top-action-section">
+      <div class="slim-stacked-container">
+        
+        <button type="button" id="open-bug-trigger" class="slim-landscape-card bug-row-card">
+          <div class="slim-card-left">
+            <div class="slim-icon-frame bug-icon-bg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+              </svg>
+            </div>
+            <div class="slim-text-frame">
+              <h4>Report Bugs</h4>
+              <p>File glitch logs & system patches</p>
+            </div>
+          </div>
+          <svg class="slim-row-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <button type="button" id="open-rules-trigger" class="slim-landscape-card rules-row-card">
+          <div class="slim-card-left">
+            <div class="slim-icon-frame rules-icon-bg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="slim-text-frame">
+              <h4>Community Rules</h4>
+              <p>Read conducting standards & guidelines</p>
+            </div>
+          </div>
+          <svg class="slim-row-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
 
       </div>
     </section>
 
-<section class="spotlight-section" style="margin: 40px auto; max-width: 800px;">
-
-
-      <div class="section-header-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-<svg viewBox="0 0 24 24" 
-     fill="none" 
-     stroke="#ffffff" 
-     stroke-width="2" 
-     stroke-linecap="round" 
-     stroke-linejoin="round" 
-     width="24" 
-     height="24" 
-     style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));">
-  <path d="M23 7l-7 5 7 5V7z"></path>
-  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-</svg>
-
-
-        <h2 class="section-title" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Daily Spotlight</h2>
+    <section class="dashboard-section animate-in delay-1">
+      <div class="section-header-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));">
+          <path d="M23 7l-7 5 7 5V7z"></path>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+        </svg>
+        <h2 class="section-title">Daily Spotlight</h2>
       </div>
   
-  <div class="spotlight-card" style="background: rgba(15, 15, 20, 0.6); border: 1px solid var(--glass-border); border-radius: 20px; padding: 20px;">
-    <div class="video-container" id="spotlight-video" style="aspect-ratio: 16/9; width: 100%; border-radius: 12px; overflow: hidden; background: #000;">
-       </div>
-    
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
-      <span style="font-size: 0.8rem; color: var(--text-sub); font-weight: 600;">Next rotation in:</span>
-      <div id="spotlight-timer" style="font-family: monospace; font-size: 1.1rem; color: #fbbf24; font-weight: 800;">00:00:00</div>
-    </div>
-  </div>
-</section>
+      <div class="glass-panel-card">
+        <div class="video-container" id="spotlight-video" style="aspect-ratio: 16/9; width: 100%; border-radius: 12px; overflow: hidden; background: #000;">
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+          <span style="font-size: 0.8rem; color: var(--text-sub); font-weight: 600;">Next rotation in:</span>
+          <div id="spotlight-timer" style="font-family: monospace; font-size: 1.1rem; color: #fbbf24; font-weight: 800;">00:00:00</div>
+        </div>
+      </div>
+    </section>
 
-      <div class="section-header-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" width="22" height="22" style="filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));">
-      <line x1="18" y1="20" x2="18" y2="10"></line>
-      <line x1="12" y1="20" x2="12" y2="4"></line>
-      <line x1="6" y1="20" x2="6" y2="14"></line>
-    </svg>
-
-
-        <h2 class="section-title" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Daily Poll</h2>
+    <section class="dashboard-section animate-in delay-2">
+      <div class="section-header-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" width="22" height="22" style="filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));">
+          <line x1="18" y1="20" x2="18" y2="10"></line>
+          <line x1="12" y1="20" x2="12" y2="4"></line>
+          <line x1="6" y1="20" x2="6" y2="14"></line>
+        </svg>
+        <h2 class="section-title">Daily Poll</h2>
       </div>
   
-
-
-    <section class="poll-section" style="margin: 32px auto; max-width: 500px; padding: 0 16px;">
-
-      <div class="thug-poll-card" style="background: rgba(15, 15, 20, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 24px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+      <div class="glass-panel-card">
         <h3 id="poll-question-text" style="margin: 0 0 20px 0; font-size: 1.1rem; color: #fff; font-weight: 800;">Loading Today's Question...</h3>
         <div id="poll-options-container" style="display: flex; flex-direction: column; gap: 12px;"></div>
       </div>
     </section>
 
-
-
-
-    <section class="app-section animate-in delay-2">
-      <div class="section-header-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+    <section class="dashboard-section animate-in delay-2">
+      <div class="section-header-row">
         <svg viewBox="0 0 448 512" fill="currentColor" width="22" height="22" style="color: #fff; filter: drop-shadow(2px 0px 0px #FE2C55) drop-shadow(-2px 0px 0px #25F4EE);">
           <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
         </svg>
-        <h2 class="section-title" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">TikTok Creators</h2>
+        <h2 class="section-title">TikTok Creators</h2>
       </div>
 
       <div class="scroll-row">
-        
         <div class="scroll-card creator-card tiktok-card">
           <img src="img/kitty.jpeg" alt="Kitty The Cat" class="card-bg">
           <div class="card-overlay-gradient"></div>
@@ -363,84 +339,165 @@
             <a href="https://www.tiktok.com/@bigstepperproductions?_r=1&_t=ZP-974yhVraZtm" target="_blank" rel="noopener" class="tiktok-link-btn">View TikTok</a>
           </div>
         </div>
-
       </div>
     </section>
 
-
-
-    <section class="app-section animate-in delay-2">
-
-
-      <div class="archive-banner promo-style">
+    <section class="dashboard-section animate-in delay-3">
+      <div class="invite-banner">
         <div class="archive-content">
-
-          <h3>Looking for <span class="highlight-text">archives?</span></h3>
-          <p>Access 100's of classic videos from various creators.</p>
-          <a href="vault.html" class="archive-btn">Open Vault</a>
+          <h3>Invite the <span class="highlight-text">squad</span></h3>
+          <p>Share this link to grow the community.</p>
+          <div class="generated-link-box">
+            <input type="text" value="thugwiki.com" id="myInviteLink" readonly>
+            <button class="archive-btn" onclick="copyToClipboard(event)">Copy</button>
+          </div>
         </div>
         <div class="archive-media-placeholder">
-          <img src="img/vault.png" alt="Archive Graphics Placeholder" class="promo-image">
+          <img src="img/invite.png" alt="Invite Friends" class="promo-image">
         </div>
       </div>
     </section>
-
-
-
-
-
-<!-- Referral Banner -->
-<section class="app-section animate-in delay-3">
-  <div class="invite-banner">
-    <div class="archive-content">
-
-      <h3>Invite the <span class="highlight-text">squad</span></h3>
-      <p>Share this link to grow the community.</p>
-      
-      <!-- Clean, static link box -->
-      <div class="generated-link-box">
-        <input type="text" value="thugwiki.com" id="myInviteLink" readonly>
-        <button class="archive-btn" onclick="copyToClipboard(event)">Copy</button>
-      </div>
-
-    </div>
-    <div class="archive-media-placeholder">
-      <img src="img/invite.png" alt="Invite Friends" class="promo-image">
-    </div>
-  </div>
-</section>
-
 
   </main>
 
-  <div id="update-modal-overlay" style="position: fixed; inset: 0; background: rgba(5, 5, 5, 0.85); z-index: 99999; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-    <div style="background: rgba(20, 20, 27, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 32px; max-width: 500px; width: 100%; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.7); position: relative;" class="animate-in">
+  <div id="bug-modal-overlay" class="custom-portal-overlay">
+    <div class="custom-portal-card animate-in">
+      <button id="close-bug-btn" class="portal-close-x">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="portal-header red-glow-accent">
+        <div class="portal-icon-wrap red-icon-style">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+        </div>
+        <div>
+          <h3>Report An Issue</h3>
+          <p>Submit system glitch patches here</p>
+        </div>
+      </div>
+      <div class="portal-inner-content">
+        <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.5); text-align: center; padding: 40px 0;">Bug reporting form modules loading...</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="rules-modal-overlay" class="custom-portal-overlay">
+    <div class="custom-portal-card animate-in">
+      <button id="close-rules-btn" class="portal-close-x">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="portal-header green-glow-accent">
+        <div class="portal-icon-wrap green-icon-style">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div>
+          <h3>Community Guidelines</h3>
+          <p>Archive conduct standards</p>
+        </div>
+      </div>
+      <div class="portal-inner-content rules-scroll-frame">
+        <div class="rules-list-wrapper">
+          
+          <div class="rule-card-item">
+            <div class="rule-badge-num red-accent">01</div>
+            <div class="rule-details-box">
+              <h3>No Gore</h3>
+              <p>This is a thug site, so please take that content somewhere else. We want to keep the environment focused on the community without graphic or disturbing imagery.</p>
+            </div>
+          </div>
+
+          <div class="rule-card-item">
+            <div class="rule-badge-num">02</div>
+            <div class="rule-details-box">
+              <h3>No Self-Promotion</h3>
+              <p>Advertising your own content, social media, or other platforms is prohibited unless you have received explicit authorization from the Admin Team.</p>
+            </div>
+          </div>
+
+          <div class="rule-card-item">
+            <div class="rule-badge-num">03</div>
+            <div class="rule-details-box">
+              <h3>No Bullying or Harassment</h3>
+              <p>We’re all friends here. There is absolutely no need to hate on each other. Respect your fellow members and keep the vibes positive.</p>
+            </div>
+          </div>
+
+          <div class="rule-card-item">
+            <div class="rule-badge-num">04</div>
+            <div class="rule-details-box">
+              <h3>No Bait Posts</h3>
+              <p>Any posts that bait with women or straight adult content will be taken down. This is a thug server, there’s no need to hide it.</p>
+            </div>
+          </div>
+
+          <div class="rule-card-item">
+            <div class="rule-badge-num">05</div>
+            <div class="rule-details-box">
+              <h3>No Racism</h3>
+              <p>We sit here and watch gay black men all day. There should be no reason at all to be racist.</p>
+            </div>
+          </div>
+
+          <div class="rule-card-item">
+            <div class="rule-badge-num">06</div>
+            <div class="rule-details-box">
+              <h3>No Misinformation</h3>
+              <p>Do not claim that a thug is a different thug in your title, description, or post anywhere on the wiki.</p>
+            </div>
+          </div>
+
+          <div class="rule-card-item">
+            <div class="rule-badge-num red-accent">07</div>
+            <div class="rule-details-box">
+              <h3>No Kirk & King Content</h3>
+              <p>Please don’t post any Charlie Kirk and Yes King photos. It’s disrespectful to Yes King and has no place here. All profiles utilizing these assets will face immediate moderation.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="update-modal-overlay" class="custom-portal-overlay">
+    <div class="custom-portal-card animate-in">
       
-      <button id="close-updates-btn" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; padding: 4px;">
+      <button id="close-updates-btn" class="portal-close-x">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
 
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 16px;">
-        <div style="background: rgba(59, 130, 246, 0.15); color: #3b82f6; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+      <div class="portal-header">
+        <div class="portal-icon-wrap" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
           </svg>
         </div>
         <div>
-          <h2 style="font-size: 1.3rem; font-weight: 800; margin: 0; color: #fff;">System Updates</h2>
-          <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem; margin: 2px 0 0 0;">Database builds & patch revisions</p>
+          <h3>System Updates</h3>
+          <p>Database builds & patch revisions</p>
         </div>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 20px;">
-
-
-        
         <div style="border-left: 2px solid #3b82f6; padding-left: 16px; position: relative;">
-          <span style="font-size: 0.75rem; color: #3b82f6; font-weight: 700; text-transform: uppercase;">June 2026 / Build 1.2</span>
+          <span style="font-size: 0.75rem; color: #3b82f6; font-weight: 700; text-transform: uppercase;">June 2026 / Build 1.3</span>
+          <h4 style="margin: 4px 0 6px 0; font-size: 1rem; color: #fff;">Dashboard UI and Bug Fixes</h4>
+          <p style="margin: 0; font-size: 0.85rem; color: #a1a1aa; line-height: 1.4;">
+Added a Daily Poll section to the dashbaord and reorganized the card layout. User Wiki comments not working/saving have been fixed as well.  
+          </p>
+        </div>
+
+        <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 16px; position: relative;">
+          <span style="font-size: 0.75rem; color: rgba(255,255,255,0.4); font-weight: 700; text-transform: uppercase;">June 2026 / Build 1.2</span>
           <h4 style="margin: 4px 0 6px 0; font-size: 1rem; color: #fff;">Discussion Boards, UI Updates and Bug Fixes</h4>
           <p style="margin: 0; font-size: 0.85rem; color: #a1a1aa; line-height: 1.4;">
             Wiki pages now have a discussion board on the bottom of each page. Discuss lore, videos, memes and more. The Thugs and TikTok Creators sections have been uodated to respectable themes. There were also a few minor bug fixes. 
@@ -454,19 +511,12 @@
             Integrated Cloudinary temporal offset attributes (`so_2`) to sync custom thumbnails across video vault panels.
           </p>
         </div>
-
-
-
-
       </div>
     </div>
   </div>
 
 <script type="module" src="poll.js"></script>
-
-
-
-  <script src="app.js"></script>
+<script src="app.js"></script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
