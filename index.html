@@ -19,11 +19,15 @@
             height: 100%;
             overflow: hidden;
             position: relative;
-            background: #090a0f;
+            background-color: #090a0f; /* Deep, modern dark charcoal */
+            color: #f3f4f6;           /* Soft off-white for perfect text readability */
+            
+            /* Extra security to kill mobile touch dragging/elastic overscroll on background */
+            overscroll-behavior: none;
+            touch-action: none;
         }
 
         body {
-            color: #f3f4f6;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -72,17 +76,20 @@
             overflow-y: auto;
             overflow-x: hidden;
             
-            /* Elegant scrollbar styling for Chrome/Safari/Edge */
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+            /* Force scroll interaction over-indexing to isolate touch physics to inside the card */
+            touch-action: pan-y;
+            overscroll-behavior: contain;
+
+            /* Hide scrollbar for IE, Edge and Firefox */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
         }
 
+        /* Hide scrollbar for Chrome, Safari and Opera natively */
         .glass-container::-webkit-scrollbar {
-            width: 6px;
-        }
-        .glass-container::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 99px;
+            display: none;
+            width: 0px;
+            background: transparent;
         }
 
         /* --- HEADER & STATUS --- */
