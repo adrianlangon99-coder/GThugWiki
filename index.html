@@ -1,161 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Site Upgrade in Progress | Beta Phase</title>
+    <style>
+        /* --- RESET & TOTAL VIEWPORT LOCK --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
 
-<meta name="6a97888e-site-verification" content="ff6e45f043a7965562657b6260e6f807">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>ThugWiki | The #1 Lore Database</title>
-  <link rel="stylesheet" href="landing.css">
+        /* Hard locking the HTML and Body wrapper to completely prevent any scrolling/overscrolling */
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #090a0f;
+        }
+
+        body {
+            color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        /* --- AMBIENT GLOW BACKGROUND --- */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.12;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+        body::before {
+            background: #6366f1;
+            top: -10%;
+            left: -10%;
+        }
+        body::after {
+            background: #a855f7;
+            bottom: -10%;
+            right: -10%;
+        }
+
+        /* --- SCROLLABLE INNER GLASSMORPHISM CONTAINER --- */
+        .glass-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 850px;
+            max-height: 90vh; /* Keeps the UI from bleeding out of the screen */
+            background: rgba(17, 24, 39, 0.35);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            
+            /* Allow internal scrolling ONLY inside the card if content is tall on smaller monitors */
+            overflow-y: auto;
+            overflow-x: hidden;
+            
+            /* Elegant scrollbar styling for Chrome/Safari/Edge */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+        }
+
+        .glass-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .glass-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 99px;
+        }
+
+        /* --- HEADER & STATUS --- */
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .beta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            color: #818cf8;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            animation: pulse 2s infinite;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .notice-text {
+            color: #9ca3af;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* --- COUNTDOWN TIMER --- */
+        .countdown-wrapper {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #a855f7;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+        }
+
+        .time-block {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-width: 85px;
+            padding: 0.85rem;
+            border-radius: 14px;
+            backdrop-filter: blur(5px);
+        }
+
+        .time-num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.725rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        /* --- FEATURES GRID / CHECKLIST --- */
+        .updates-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        /* Card Styles */
+        .update-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 1.25rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .update-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .card-header-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .update-card p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Checklist Specifics */
+        .vault-card {
+            grid-column: span 2;
+            background: rgba(99, 102, 241, 0.02);
+            border: 1px solid rgba(99, 102, 241, 0.08);
+        }
+
+        .checklist {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.1rem;
+            list-style: none;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #d1d5db;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .checkbox {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .checkbox::after {
+            content: '';
+            width: 6px;
+            height: 3px;
+            border-left: 1.5px solid #10b981;
+            border-bottom: 1.5px solid #10b981;
+            transform: rotate(-45deg) translate(0.5px, -0.5px);
+        }
+
+        /* --- DEMO POPUP TRIGGER BUTTON --- */
+        .demo-action {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 25px rgba(168, 85, 247, 0.4);
+        }
+
+        /* --- PERFECT LAYER POPUP OVERLAY --- */
+        .popup-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 6, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .popup-content {
+            background: rgba(23, 25, 35, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 460px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.95);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+
+        .popup-icon {
+            font-size: 2.75rem;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .popup-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-text {
+            color: #9ca3af;
+            font-size: 0.925rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+        }
+
+        /* --- RESPONSIVE BREAKPOINTS --- */
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            .vault-card {
+                grid-column: span 1;
+            }
+            .checklist {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .glass-container {
+                padding: 1.75rem 1.25rem;
+            }
+            h1 {
+                font-size: 1.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checklist {
+                grid-template-columns: 1fr;
+            }
+            .countdown {
+                gap: 0.4rem;
+            }
+            .time-block {
+                min-width: 65px;
+                padding: 0.65rem;
+            }
+            .time-num {
+                font-size: 1.35rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <nav class="landing-nav" id="top-nav">
-    <div class="nav-container">
-      <h1 class="site-brand">ThugWiki</h1>
-      <div class="auth-group">
-        <a href="login.html" class="nav-link">Log In</a>
-        <a href="signup.html" class="btn-primary-sm">Sign Up</a>
-      </div>
+    <div class="glass-container">
+        <header>
+            <div class="beta-badge">
+                <span style="width: 6px; height: 6px; background: #818cf8; border-radius: 50%; display: inline-block;"></span>
+                Beta Infrastructure Upgrade
+            </div>
+            <h1>We're Crafting Something Better</h1>
+            <p class="notice-text">
+                To keep your experience flawless, we frequently optimize our platforms. Sometimes, unexpected bugs pop up or massive structural changes require us to take things offline for deep maintenance. We are currently performing a scheduled overhaul.
+            </p>
+        </header>
+
+        <div class="countdown-wrapper">
+            <p class="countdown-title">Estimated Launch Window</p>
+            <div class="countdown">
+                <div class="time-block">
+                    <span class="time-num" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-num" id="hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-num" id="minutes">00</span>
+                    <span class="time-label">Mins</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-num" id="seconds">00</span>
+                    <span class="time-label">Secs</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="updates-section">
+            <h2 class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                What's Happening Behind the Scenes
+            </h2>
+            
+            <div class="grid-layout">
+                <div class="update-card vault-card">
+                    <div class="card-header-title" style="color: #818cf8;">
+                        <span>📦</span> The Vault Section Architecture Revamp
+                    </div>
+                    <p>We are expanding your dynamic workspace. The Vault is being re-engineered to seamlessly support native media asset processing, dynamic routing, and instantaneous user content delivery networks.</p>
+                    <ul class="checklist">
+                        <li><div class="checkbox"></div> User Uploads</li>
+                        <li><div class="checkbox"></div> Video Downloads</li>
+                        <li><div class="checkbox"></div> Video Sharing</li>
+                        <li><div class="checkbox"></div> Active Comments</li>
+                        <li><div class="checkbox"></div> Custom Emojis</li>
+                        <li><div class="checkbox"></div> Advanced Search/Filters</li>
+                    </ul>
+                </div>
+
+                <div class="update-card">
+                    <div class="card-header-title">🛡️ Hardened Encryption & Security</div>
+                    <p>Your current data is entirely safe and untouched. However, we are proactively upgrading our authentication protocols and security policies to prevent any potential vulnerability threats down the line.</p>
+                </div>
+
+                <div class="update-card">
+                    <div class="card-header-title">📱 Fluid Cross-Platform UI UX</div>
+                    <p>Fixing layout breaking issues across heterogeneous viewpoint states. We're tuning our responsive CSS engines to ensure a perfect presentation on ultra-wide screens, laptops, and mobile devices alike.</p>
+                </div>
+
+                <div class="update-card">
+                    <div class="card-header-title">✨ Pointless Redirections Removed</div>
+                    <p>Say goodbye to long page transition wait times. We are converting almost all contextual workflows into asynchronous, beautifully blurred UI popups to maintain state memory efficiently.</p>
+                </div>
+
+                <div class="update-card">
+                    <div class="card-header-title">⚡ Core Speed & SEO Auditing</div>
+                    <p>Injecting contextual SEO meta tags right into posts for dynamic discovery. Concurrently sweeping old execution threads and memory leaks to guarantee drastically reduced time-to-interactive speeds.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-action">
+            <button class="btn" id="openPopupBtn">Preview Our New Popup Engine</button>
+        </div>
     </div>
-  </nav>
 
-  <main class="landing-main">
-    
-    <header class="hero-section hidden-element">
-      <div class="glow-orb"></div>
-      <span class="beta-badge">Public Beta Live</span>
-      <h1 class="hero-title">Preserving the <br><span class="text-gradient">Culture & Lore.</span></h1>
-      <p class="hero-subtitle">
-        The ultimate community-driven encyclopedia documenting the legends, the viral audios, and the memes that shaped the internet.
-      </p>
-      <div class="hero-cta-group">
-        <a href="signup.html" class="btn-primary">Join the Community</a>
-
-      </div>
-      
-
-    </header>
-
-    <section class="features-section hidden-element">
-      <div class="section-container">
-        <div class="feature-box">
-          <div class="feature-icon" style="color: #ef4444;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-            </svg>
-          </div>
-          <h3>Verified Lore</h3>
-          <p>Read detailed, community-moderated histories and timelines of your favorite creators.</p>
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <span class="popup-icon">🚀</span>
+            <h3 class="popup-title">No Redirections Needed!</h3>
+            <p class="popup-text">
+                Instead of forcing you to load a brand new page, our upcoming design uses reactive overlay cards just like this one. It keeps your app state lightning fast and entirely seamless. 
+            </p>
+            <button class="btn" id="closePopupBtn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); box-shadow: none;">Got it</button>
         </div>
-        <div class="feature-box">
-          <div class="feature-icon" style="color: #3b82f6;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
-              <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-            </svg>
-          </div>
-          <h3>Audio Archives</h3>
-          <p>Find the exact origins of the viral TikTok sounds sweeping the internet.</p>
-        </div>
-        <div class="feature-box">
-          <div class="feature-icon" style="color: #10b981;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <h3>Active Community</h3>
-          <p>Join specialized discussion groups, hunt for lost media, and debate theories.</p>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="hall-of-fame-section hidden-element">
-      <div class="section-header">
-        <h2>The Hall of Fame</h2>
-        <p>The undisputed icons, architects, and legends of the memes.</p>
-      </div>
-      
-      <div class="fame-grid">
-        <div class="fame-card">
-          <img src="img/king.jpeg" alt="Yes King" class="fame-img" onerror="this.src='https://via.placeholder.com/400x500/1a1a24/ffffff?text=Yes+King'">
-          <div class="fame-overlay">
-            <h3>Yes King</h3>
-            <p>The undisputed ruler of the scene. Legendary audios and an unshakeable presence.</p>
-          </div>
-        </div>
-
-        <div class="fame-card">
-          <img src="img/dreamy.jpeg" alt="Dreamybull" class="fame-img" onerror="this.src='https://via.placeholder.com/400x500/1a1a24/ffffff?text=Dreamybull'">
-          <div class="fame-overlay">
-            <h3>Dreamybull</h3>
-            <p>A global meme sensation whose legendary quotes are etched into internet history.</p>
-          </div>
-        </div>
-
-        <div class="fame-card">
-          <img src="img/dukecage.jpeg" alt="Duke Cage" class="fame-img" onerror="this.src='https://via.placeholder.com/400x500/1a1a24/ffffff?text=Duke+Cage'">
-          <div class="fame-overlay">
-            <h3>Duke Cage</h3>
-            <p>A taboo poz talk powerhouse in the culture with deep lore and the urge to spread his seed.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="viral-stats-section hidden-element">
-      <div class="stats-container">
-        <div class="stats-text">
-          <h2>Viral Soundscapes</h2>
-          <p>From Kitty The Cat to Big Stepper Productions, see how top TikTokers are taking these iconic audios to the mainstream.</p>
-        </div>
-        <div class="stats-numbers">
-          <div class="stat-item">
-            <span class="number">500M+</span>
-            <span class="label">Video Views</span>
-          </div>
-          <div class="stat-item">
-            <span class="number">1M+</span>
-            <span class="label">Audio Uses</span>
-          </div>
-          <div class="stat-item">
-            <span class="number">50+</span>
-            <span class="label">Creators</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bottom-cta-section hidden-element">
-      <div class="cta-box">
-        <h2>Ready to contribute?</h2>
-        <p>Create an account to track lore, join discussions, and submit new archives to the database.</p>
-        <div class="cta-buttons">
-          <a href="signup.html" class="btn-primary btn-large">Create Free Account</a>
-          <a href="login.html" class="btn-secondary btn-large">I already have an account</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="landing-footer">
-    <div class="footer-content">
-      <h2 class="site-brand">ThugWiki</h2>
-      <p>Preserving internet history, one meme at a time.</p>
-      <div class="footer-links">
-        <a href="/terms">Terms of Service</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="rulesApp.html">Community Guidelines</a>
-      </div>
     </div>
-  </footer>
 
-  <script src="landing.js"></script>
+    <script>
+        // --- 1. DYNAMIC COUNTDOWN ENGINE (Targeting July 1st) ---
+        const targetDate = new Date('July 1, 2026 00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference < 0) {
+                document.querySelector('.countdown-wrapper').innerHTML = "<p class='countdown-title' style='color:#10b981'>Deployment Completed. Refreshing Core Systems...</p>";
+                return;
+            }
+
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(d).padStart(2, '0');
+            document.getElementById('hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- 2. ANTI-REDIRECTION POPUP SYSTEM CONTROLLER ---
+        const overlay = document.getElementById('popupOverlay');
+        const openBtn = document.getElementById('openPopupBtn');
+        const closeBtn = document.getElementById('closePopupBtn');
+
+        function togglePopup(show) {
+            if (show) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+        }
+
+        openBtn.addEventListener('click', () => togglePopup(true));
+        closeBtn.addEventListener('click', () => togglePopup(false));
+        
+        overlay.addEventListener('click', (e) => {
+            if(e.target === overlay) togglePopup(false);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                togglePopup(false);
+            }
+        });
+    </script>
 </body>
 </html>
