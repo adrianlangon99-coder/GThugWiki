@@ -1,234 +1,556 @@
-/* ==========================================
-   wiki.css - Shared Profile Page Configurations
-   ========================================== */
+/* ========================================== */
+/* DISCORD-STYLE EMOJI REACTION CHASSIS       */
+/* ========================================== */
+.wiki-notable-links-section {
+  background: #1c1e24;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #2b2e3a;
+  margin: 20px 0;
+}
 
-.brand-sub-gold {
-  color: #fbbf24 !important;
-  font-size: 0.95rem !important;
-  font-weight: 700;
-  margin-left: 4px;
+.notable-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+}
+
+.notable-links-list li {
+  margin-bottom: 10px;
+}
+
+.notable-links-list a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5865F2; /* Electric Purple */
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.notable-links-list a:hover {
+  text-decoration: underline;
+  color: #fff;
 }
 
 /* ========================================== */
-/* WIKI COMMENT FEED STYLING                  */
+/* GLOBAL SCROLLBAR ELIMINATION ENGINE       */
 /* ========================================== */
-.wiki-comment-card {
-  background: rgba(255, 255, 255, 0.02) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
+
+/* Hides scrollbars globally across every single element on the page */
+* {
+  scrollbar-width: none !important; /* Hides scrollbar on Firefox */
+  -ms-overflow-style: none !important; /* Hides scrollbar on IE and Edge */
 }
 
-.wiki-comment-card:hover {
-  border-color: rgba(255, 255, 255, 0.09) !important;
-  background: rgba(255, 255, 255, 0.03) !important;
-  transform: translateY(-1px);
+/* Hides scrollbar on Chrome, Safari, and WebKit-based browser engines (iOS/Android) */
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
 
-.comment-meta-header {
+/* Specific fallback check to ensure the body layer and modal layers remain unmarred */
+html, body, .portal-inner-content, .yt-channels-carousel, .yt-carousel-row {
+  -webkit-overflow-scrolling: touch; /* Keeps the glass-smooth scrolling engine intact on iOS */
+}
+
+/* ========================================== */
+/* 1. STRICTOR NATIVE APP VIEWPORT LOCK       */
+/* ========================================== */
+html, body {
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  
+  /* Kill the scroll bounce chain entirely */
+  overscroll-behavior: none !important;
+  overscroll-behavior-y: none !important;
+}
+
+html {
+  height: 100%;
+  overflow: hidden; /* Prevent browser window canvas stretching */
+}
+
+body {
+  height: 100%;
+  overflow-y: auto; /* Let layout scrolling happen securely within the body boundary container */
+  -webkit-overflow-scrolling: touch; /* Keeps momentum inertia scroll ultra smooth on iOS */
+}
+
+/* Modal Inner Windows Scroll Boundary Control */
+.portal-inner-content {
+  overflow-y: auto !important; 
+  max-height: 65vh !important; 
+  padding-right: 8px;
+  box-sizing: border-box;
+  overscroll-behavior: contain !important; 
+}
+
+/* ========================================== */
+/* 2. FIXED UTILITY APP NAVIGATION            */
+/* ========================================== */
+.nav-wrapper-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background-color: #000000;
+  border-bottom: 1px solid #23252e;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
-.comment-username {
+.site-brand-logo {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.back-to-vault-btn {
+  color: #8e94a6;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.back-to-vault-btn:hover {
+  color: #5865F2; /* Discord Blurple */
+}
+
+/* ========================================== */
+/* 3. HERO DESIGN ARCHITECTURE (REMASTERED)   */
+/* ========================================== */
+.wiki-hero-banner {
+  width: 100%;
+  height: 280px; /* Locked desktop layout baseline height */
+  margin-top: 56px;
+  position: relative;
+  overflow: hidden;
+  background-color: #0c0d10;
+}
+
+.wiki-banner-image {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.9) 100%), url('img/kingBanner.jpeg');
+  background-size: cover;
+  background-position: center 25%;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.heart-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  opacity: 0;
+  animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.7; }
+  100% { transform: translateY(-260px); opacity: 0; }
+}
+
+.wiki-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 28px;
+}
+
+.wiki-avatar-frame {
+  width: 130px;
+  height: 130px;
+  flex-shrink: 0;
+  border: 4px solid #121318;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #1c1e24;
+  position: relative;
+  z-index: 12;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.wiki-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.wiki-title-block {
+  text-align: left;
+  color: #ffffff;
+  z-index: 12;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.wiki-title-block h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.wiki-title-block p {
+  margin: 6px 0 0 0;
+  color: #5865F2;
+  font-size: 0.85rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ========================================== */
+/* PREMIUM NOTABLE LINKS UPGRADE              */
+/* ========================================== */
+.wiki-notable-links-section {
+  background: #121318;
+  border: 1px solid #23252e;
+  padding: 24px;
+  border-radius: 20px;
+  margin-top: 24px;
+  box-sizing: border-box;
+}
+
+.wiki-notable-links-section h3 {
+  margin: 0 0 18px 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 1px solid #23252e;
+  padding-bottom: 8px;
+  text-align: left;
+}
+
+.notable-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.notable-links-list li {
+  margin: 0;
+}
+
+.notable-links-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #1c1e24;
+  border: 1px solid #2b2e3a;
+  color: #ced4e2;
+  padding: 14px 16px;
+  border-radius: 12px;
+  text-decoration: none;
   font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.1s;
+}
+
+.notable-links-list a svg {
+  color: #717684;
+  flex-shrink: 0;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.notable-links-list a:hover {
+  background: rgba(88, 101, 242, 0.08);
+  border-color: #5865F2;
   color: #ffffff;
 }
 
-.comment-timestamp {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
+.notable-links-list a:hover svg {
+  color: #5865F2;
+  transform: translate(2px, -2px);
 }
 
-.comment-text-content {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #cbd5e1;
-  word-break: break-word;
+.notable-links-list a:active {
+  transform: scale(0.98);
+}
+
+/* ========================================== */
+/* MOBILE VIEW RESPONSIVE RECONCILIATION      */
+/* ========================================== */
+@media (max-width: 768px) {
+  .wiki-hero-banner {
+    height: auto;
+    min-height: 280px;
+  }
+  
+  .wiki-header-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 16px 24px 16px;
+    gap: 16px;
+  }
+
+  .wiki-avatar-frame {
+    width: 110px;
+    height: 110px;
+  }
+
+  .wiki-title-block {
+    text-align: center;
+  }
+
+  .wiki-title-block h1 {
+    font-size: 2rem;
+  }
+  
+  .notable-links-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 
-/* === JUSTFOR.FANS PREMIUM BRANDING === */
-.social-tag-link.jff-premium-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: #0f0a0a !important; /* Deep obsidian red-tint base */
-  color: #ffffff !important;
-  border: 1px solid rgba(239, 68, 68, 0.15) !important; /* Soft red brand border */
-  padding: 12px 22px;
-  border-radius: 12px;
-  text-decoration: none;
+/* ========================================== */
+/* 4. CONTENT TWO-COLUMN GRID SYSTEM          */
+/* ========================================== */
+.wiki-body-layout {
+  max-width: 1200px;
+  margin: 30px auto 60px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 30px;
+}
+
+.wiki-main-column {
+  text-align: left;
+}
+
+/* Rounded Content Sections */
+.wiki-section-card {
+  background-color: #121318;
+  border: 1px solid #23252e;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.wiki-section-card h2 {
+  margin: 0 0 16px 0;
+  font-size: 1.4rem;
   font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: -0.01em;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.03);
+  border-bottom: 1px solid #23252e;
+  padding-bottom: 8px;
 }
 
-/* Red-hot brand glowing highlight state on focus/hover */
-.social-tag-link.jff-premium-btn:hover {
-  background: #190f0f !important;
-  border-color: rgba(239, 68, 68, 0.4) !important;
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
-  transform: translateY(-1px);
+.wiki-section-card p {
+  color: #ced4e2;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
 }
 
-/* Custom embedded graphic asset block */
-.jff-icon-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  color: #ef4444; /* Vivid JustFor.Fans Brand Red */
-  transition: transform 0.2s ease;
+.wiki-section-card p:last-child {
+  margin-bottom: 0;
 }
 
-.jff-premium-btn:hover .jff-icon-wrap {
-  transform: scale(1.1); /* Subtle heartbeat punch on mouse hover */
+/* Embedded Media & Inline Graphics */
+.wiki-inline-image-box {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px 0;
+  border: 1px solid #23252e;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #1c1e24;
 }
 
-.jff-icon-wrap svg {
+.wiki-inline-image-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-caption {
+  display: block;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: #8e94a6;
+  border-top: 1px solid #23252e;
+}
+
+.video-embed-frame-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000000;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #23252e;
+  margin-top: 16px;
+}
+
+.video-embed-frame-wrapper iframe {
   width: 100%;
   height: 100%;
+  border: none;
 }
 
-
-.wiki-back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-sub);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
+/* Catchphrase Highlight System */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
 }
-.wiki-back-btn svg { width: 16px; height: 16px; }
-.wiki-back-btn:active { color: var(--text-main); }
 
-/* MEMORIAL BANNER STYLING */
-.rip-banner-container {
-  position: relative;
-  max-width: 1200px;
-  margin: 20px auto 0;
-  padding: 40px 24px;
-  background: linear-gradient(180deg, #111115 0%, #07070a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  overflow: hidden;
+.quote-pill-item {
+  background: #1c1e24;
+  border: 1px solid #2b2e3a;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   text-align: center;
 }
 
-.rip-glow-effect {
-  position: absolute;
-  top: -50%; left: 50%; transform: translateX(-50%);
-  width: 300px; height: 150px;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
-  pointer-events: none;
+.quote-pill-item strong {
+  color: #5865F2;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.rip-content h2 {
-  font-size: 0.85rem; color: #fbbf24; font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 8px 0;
-}
-.rip-content h1 {
-  font-size: 2.2rem; font-weight: 900; margin: 0;
-  letter-spacing: -0.04em; color: #ffffff;
-}
-.rip-dates {
-  font-size: 0.95rem; color: var(--text-sub); margin: 8px 0 16px;
-  font-weight: 600; letter-spacing: 0.02em;
-}
-.rip-quote {
-  font-style: italic; font-size: 0.9rem; color: #a1a1aa;
-  max-width: 600px; margin: 0 auto; line-height: 1.4;
+.quote-pill-item span {
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 500;
 }
 
-/* WIKI LAYOUT TWO-COLUMN CONTAINER */
-.wiki-layout-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-  margin-top: 24px;
-}
-
-.lore-section { margin-bottom: 32px; }
-.lore-section h2 { font-size: 1.35rem; font-weight: 800; margin: 0 0 12px 0; letter-spacing: -0.02em; color: #ffffff; }
-.lore-section p { font-size: 1rem; color: var(--text-sub); line-height: 1.6; margin: 0 0 16px 0; text-align: justify; }
-
-/* CUSTOM HARDWARE HARD VIDEO FRAME VIEW */
-.custom-video-frame {
-  position: relative;
-  background: #0f0f14;
-  border: 2px solid rgba(255, 255, 255, 0.07);
-  border-radius: 18px;
-  padding: 8px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
-  overflow: hidden;
-}
-
-.frame-lens-reflection {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 40%);
-  pointer-events: none; z-index: 5;
-}
-
-.video-container-wrapper {
-  position: relative; width: 100%; height: 0;
-  padding-bottom: 56.25%; /* Perfect 16:9 Cinema Aspect Ratio */
-  border-radius: 12px; overflow: hidden;
-}
-.video-container-wrapper iframe {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-}
-
-.frame-caption-bar {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 4px 2px; font-size: 0.8rem; color: #71717a; font-weight: 600;
-}
-.status-dot {
-  width: 6px; height: 6px; background: #3b82f6; border-radius: 50%;
-  box-shadow: 0 0 8px #3b82f6;
-}
-
-/* SIDE INFOBOX LAYOUT */
-.wiki-infobox {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+/* ========================================== */
+/* 5. SIDEBAR DATA METADATA INFOBOX           */
+/* ========================================== */
+.wiki-sidebar-infobox {
+  background-color: #121318;
+  border: 1px solid #23252e;
   border-radius: 20px;
   padding: 20px;
   height: fit-content;
+  box-sizing: border-box;
 }
-.infobox-header {
-  font-size: 0.8rem; font-weight: 800; color: #a1a1aa;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  border-bottom: 1px solid var(--glass-border); padding-bottom: 8px; margin-bottom: 12px;
+
+.infobox-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 16px 0;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
 .infobox-row {
-  display: flex; justify-content: space-between; padding: 10px 0;
-  font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #23252e;
+  font-size: 0.9rem;
+  gap: 12px;
 }
-.infobox-row .label { color: var(--text-sub); }
-.infobox-row .value { color: var(--text-main); font-weight: 600; text-align: right; }
 
-/* SOCIAL ROW LINKS BUTTONS */
-.social-links-container { display: flex; flex-direction: column; gap: 10px; }
-.social-tag-link {
-  display: block; width: 100%; padding: 12px; text-align: center;
-  text-decoration: none !important; font-size: 0.85rem; font-weight: 700; border-radius: 12px;
+.infobox-row:last-child {
+  border-bottom: none;
 }
-.social-tag-link.tiktok { background: #ffffff; color: #000000 !important; }
-.social-tag-link.youtube { background: rgba(239, 68, 68, 0.1); color: #f87171 !important; border: 1px solid rgba(239, 68, 68, 0.2); }
 
-/* MEDIA RESPONSIVE BREAKPOINT GRID TO 2 COLUMN ON PC SCREEN LAYOUTS */
-@media (min-width: 850px) {
-  .wiki-layout-grid {
-    grid-template-columns: 1fr 300px;
+.infobox-label {
+  color: #8e94a6;
+  font-weight: 600;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.infobox-value {
+  color: #ffffff;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* ========================================== */
+/* 6. SYSTEM BREAKPOINT CONFIGURATIONS        */
+/* ========================================== */
+@media (max-width: 768px) {
+  .wiki-body-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .wiki-sidebar-infobox {
+    order: -1; /* Pushes the Infobox directly below the avatar header on phones */
+  }
+  
+  .wiki-hero-banner {
+    height: auto;
+    padding-top: 40px;
+  }
+
+  .wiki-banner-image {
+    height: 100%;
+  }
+
+  .wiki-header-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+  
+  .wiki-title-block {
+    text-align: center;
+  }
+  
+  .wiki-title-block h1 {
+    font-size: 2rem;
   }
 }

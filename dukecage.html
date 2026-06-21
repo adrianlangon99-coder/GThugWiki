@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ThugWiki | Duke Cage</title>
+  <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+  <nav class="nav-wrapper-fixed">
+    <div class="nav-container">
+      <a href="app.html" class="site-brand-logo">ThugWiki</a>
+      <a href="app.html" class="back-to-vault-btn">&larr; Go Back</a>
+    </div>
+  </nav>
+
+  <div class="wiki-hero-banner">
+    <div class="wiki-banner-image" style="background-image: url('img/dukeBanner.jpeg');"></div>
+    
+    <header class="wiki-header-container">
+      <div class="wiki-avatar-frame">
+        <img src="img/duke.jpeg" alt="Duke Cage Profile Image">
+      </div>
+      <div class="wiki-title-block">
+        <h1>Duke Cage</h1>
+      </div>
+    </header>
+  </div>
+
+  <main class="wiki-body-layout">
+    
+    <div class="wiki-main-column">
+      
+      <section class="wiki-section-card">
+        <h2>The Enigma of the Underground</h2>
+        <p>Operating deep within the underground sectors of adult digital media, <strong>Duke Cage</strong> is an unapologetic, highly prolific gay Black creator. In a space often dominated by heavily produced corporate studios and polished influencers, Duke has carved out a massive footprint by leaning entirely into raw, unfiltered authenticity. Very little is known about his private background or life before the camera; his entire public persona is an absolute mystery, defined solely by a relentless, high-endurance dedication to hardcore performance.</p>
+        
+        <div class="wiki-inline-image-box">
+          <img src="img/duke1.jpeg" alt="Duke Cage Production Set Overview">
+        </div>
+
+        <p>Rather than chasing mainstream crossover appeal, Duke built his brand architecture by targeting specific, intense demographics. He operates purely as an independent force, establishing his reputation entirely on word-of-mouth within niche communities who seek out content that pushes past standard industry boundaries.</p>
+      </section>
+
+      <section class="wiki-section-card">
+        <h2>Taboo Subcultures &amp; Psychological Dominance</h2>
+        <p>Duke’s content is notorious for crossing lines that conventional creators avoid. He caters directly to submissive men, specializing in highly intense, taboo themes centered heavily around the POZ subculture. His scenes are raw and uninhibited, utilizing party-and-play aesthetics—frequently incorporating the use of poppers on camera to elevate the hazy, high-energy atmosphere of his sets.</p>
+        
+        <div class="wiki-inline-image-box">
+          <img src="img/duke2.jpeg" alt="Collaborative Studio Set">
+        </div>
+
+        <p>A massive part of his appeal lies in his psychological dominance over his partners. He is famous for his heavy, explicit dialogue, engaging in extreme verbal degradation and taboo POZ roleplay to break down submissives on camera. This intense audio experience has become a signature element of his brand, cementing his status among fans who look for completely unscripted, unfiltered dominance.</p>
+      </section>
+
+      <section class="wiki-section-card">
+        <h2>Endurance &amp; The Lifetime Commitment</h2>
+        <p>What truly separates Duke from other creators in the underground sphere is his terrifying stamina and complete devotion to his lifestyle. He doesn't treat his content as a temporary hustle; for Duke, it's an absolute obsession.</p>
+        <p>Duke has famously gone on record stating that his drive is endless. He has publicly declared that he will never retire, promising his audience that he won't stop performing until the day he dies. He remains a highly elusive but legendary figure, respected purely for his uncompromising dedication to the extreme edges of the adult community.</p>
+        
+        <div class="wiki-inline-image-box">
+          <img src="img/duke3.jpeg" alt="Video Shoot Layout">
+        </div>
+      </section>
+
+      <div class="wiki-notable-links-section">
+        <h3>Notable Links</h3>
+        <ul id="notable-links-list" class="notable-links-list">
+        </ul>
+      </div>
+
+    </div>
+
+    <aside class="wiki-sidebar-infobox">
+      <div class="infobox-title">Duke Cage</div>
+      <div class="infobox-row">
+        <span class="infobox-label">Known As</span>
+        <span class="infobox-value">Duke Cage</span>
+      </div>
+      <div class="infobox-row">
+        <span class="infobox-label">Background</span>
+        <span class="infobox-value">Unknown / Highly Elusive</span>
+      </div>
+      <div class="infobox-row">
+        <span class="infobox-label">Core Focus</span>
+        <span class="infobox-value">POZ Subculture &amp; Dominance</span>
+      </div>
+      <div class="infobox-row">
+        <span class="infobox-label">Status</span>
+        <span class="infobox-value">Active (Until Death)</span>
+      </div>
+    </aside>
+
+  </main>
+
+<script>
+// ==========================================
+// HARDCODED NOTABLE LINKS ENGINE
+// ==========================================
+const notableLinksList = document.getElementById('notable-links-list');
+
+if (notableLinksList) {
+  const hardcodedLinks = [
+    { title: "Official Duke X Page", url: "https://x.com/therealdukecage?s=21" },
+    { title: "Official Duke Just For Fans Page", url: "https://justfor.fans/duke_cagexxx?TermsAgree=yes" }
+  ];
+
+  notableLinksList.innerHTML = hardcodedLinks.map(link => `
+    <li>
+      <a href="${link.url}" target="_blank" rel="noopener noreferrer">
+        ${link.title}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+    </li>
+  `).join('');
+}
+</script>
+
+  <script src="wiki.js"></script>
+</body>
+</html>

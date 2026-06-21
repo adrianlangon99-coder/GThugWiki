@@ -1,0 +1,828 @@
+/* ==========================================
+   PREMIUM SAAS DASHBOARD PROFILE STYLES
+   ========================================== */
+
+/* Tier 2: Stats Grid Alignment */
+.profile-stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important; /* Forces side-by-side split layout */
+  gap: 14px !important;
+  margin-bottom: 20px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Individual Stat Cards styling */
+.stat-card {
+  background: #121318 !important;
+  border: 1px solid #23252e !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  box-sizing: border-box !important;
+}
+
+.stat-info {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Info Trigger Alignment Fix */
+#karma-info-trigger svg {
+  transition: stroke 0.15s ease;
+}
+#karma-info-trigger:hover svg {
+  stroke: #ffd700;
+}
+
+/* Tier 3: My Published Logs Internal Grid Reset */
+#user-posts-feed-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important; /* Clean auto wrapping */
+  gap: 16px !important;
+  margin-top: 12px !important;
+  width: 100% !important;
+}
+
+/* Layout fixing for mobile responsive screen views */
+@media (max-width: 480px) {
+  .profile-stats-grid {
+    grid-template-columns: 1fr !important; /* Stack cleanly on super narrow displays */
+    gap: 10px !important;
+  }
+}
+
+/* ========================================== */
+/* JUMP-FREE ENGINE BACKGROUND SCROLL LOCK    */
+/* ========================================== */
+body.modal-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important; /* Kills iOS rubber-band bouncing */
+  touch-action: none !important;        /* Freezes touchscreen background dragging */
+}
+
+
+
+.profile-logout-inline-btn {
+  width: 100%;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.profile-logout-inline-btn:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.profile-logout-inline-btn:active {
+  transform: scale(0.98);
+}
+
+.profile-logout-inline-btn svg {
+  flex-shrink: 0;
+}
+
+/* ========================================== */
+/* ACCOUNT USER PROFILE & POSTS ARCHITECTURE  */
+/* ========================================== */
+.user-identity-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.user-avatar-frame {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-sub);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.user-avatar-frame svg {
+  width: 28px;
+  height: 28px;
+}
+
+.user-profile-details {
+  text-align: left;
+}
+
+.user-profile-details h4 {
+  color: var(--text-main);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.user-profile-details p {
+  color: var(--text-sub) !important;
+  font-size: 0.85rem !important;
+}
+
+.user-posts-section {
+  text-align: left;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 20px;
+}
+
+.user-posts-section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+
+/* Scroll tracker height limits for the user's specific items card stream */
+#user-posts-feed-grid {
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.empty-feed-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.empty-feed-msg p {
+  font-size: 0.85rem !important;
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Make media cards feel clickable */
+.playable-media-card {
+  cursor: pointer;
+}
+
+/* Master Cinematic Player Styling */
+.theater-wide-card {
+  max-width: 880px !important;
+  width: 95% !important;
+  padding: 0 !important; 
+  overflow: hidden;
+  background: #0f0f0f !important; /* Pitch-black YouTube background */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.theater-player-viewport {
+  width: 100%;
+  background: #000000;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#theater-video-player {
+  width: 100%;
+  height: 100%;
+  max-height: 72vh;
+  object-fit: contain; /* Prevents vertical/TikTok videos from stretching horizontally */
+  outline: none;
+}
+
+.theater-meta-panel {
+  padding: 18px 24px;
+  text-align: left;
+}
+
+.theater-meta-panel h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.theater-meta-panel p.sub-text {
+  font-size: 0.85rem !important;
+  color: #aaaaaa !important;
+  margin: 0;
+}
+
+/* Make your Cloudinary card thumbnails fit their boxes smoothly */
+.yt-thumb {
+  position: relative;
+  overflow: hidden;
+  background: #181818;
+}
+
+.yt-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.yt-video-card:hover .yt-thumb img {
+  transform: scale(1.05);
+}
+
+/* ========================================== */
+/* APP SPLASH LOAD SCREEN GATE LAYOUTS        */
+/* ========================================== */
+.app-loading-gate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999; /* Higher than fixed navigation elements */
+  pointer-events: all;
+  box-sizing: border-box;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Custom elastic pop curves */
+}
+
+/* Kinetic bounce up exit frame sequence */
+.app-loading-gate.gate-dismiss-bounce {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.splash-branding-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.splash-brand-logo {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -1px;
+  animation: logoPulseGlow 2s infinite ease-in-out;
+}
+
+/* ========================================== */
+/* HIGH-CONTRAST SPINNER REVOLUTION MATRIX    */
+/* ========================================== */
+.tech-loading-spinner {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.spinner-ring {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border: 3px solid transparent;
+  border-top-color: #5865F2; /* Branded Purple Segment */
+  border-radius: 50%;
+  animation: hardwareSpin 0.85s linear infinite;
+}
+
+/* ========================================== */
+/* HARDWARE INTERPOLATION KEYFRAMES          */
+/* ========================================== */
+@keyframes hardwareSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes logoPulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.02); opacity: 1; text-shadow: 0 0 15px rgba(88, 101, 242, 0.4); }
+}
+
+/* ========================================== */
+/* HIDE GLOBAL SYSTEM VIEWPORT SCROLLBARS     */
+/* ========================================== */
+html, body {
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hides scrollbar in old IE/Edge */
+}
+
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Safari and Chrome */
+}
+
+
+/* ========================================== */
+/* 1. THEME DESIGN VARIABLES & ANTI-COPY/ZOOM */
+/* ========================================== */
+:root {
+  --app-bg: #050505;
+  --bg-panel: rgba(15, 15, 20, 0.65);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-main: #ffffff;
+  --text-sub: #a1a1aa;
+  --accent: #3b82f6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100dvh;
+  background-color: var(--app-bg);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Strict Anti-Copy Controls */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* Mobile Zoom Prevention & Bounces Blocked */
+  touch-action: pan-x pan-y;
+  
+  /* HARD BLOCK PULL-TO-REFRESH & OVERSCROLL BOUNCING */
+  overscroll-behavior-y: none;
+}
+
+/* Hard block dragging of page visuals */
+img, svg {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* ========================================== */
+/* 2. THE TOP NAVIGATION BAR (LOCKED BOUNDS)  */
+/* ========================================== */
+.nav-wrapper-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(5, 5, 5, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.site-brand-logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 0%, var(--text-sub) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+/* Dropdown UI Components */
+.profile-action-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+#profile-avatar-trigger {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+#profile-avatar-trigger:active {
+  transform: scale(0.92);
+}
+
+#profile-avatar-trigger:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-main);
+}
+
+.profile-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 160px;
+  background: #0f0f14;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 6px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 101;
+  
+  /* Smooth Animation Transitions */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.95);
+  transform-origin: top right;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease, visibility 0.18s ease;
+}
+
+.profile-dropdown-menu.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.dropdown-link-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  color: var(--text-sub);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link-item svg {
+  color: var(--text-sub);
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.dropdown-link-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.dropdown-link-item:hover svg {
+  color: var(--text-main);
+}
+
+/* ========================================== */
+/* 3. CENTRAL HUB WRAPPER WINDOW (MAX-BOUNDS) */
+/* ========================================== */
+.main-viewport-frame {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 0; /* Changed left/right padding to 0 */
+  overflow-x: hidden; /* Prevents horizontal scrolling bugs */
+}
+
+
+.placeholder-body-text {
+  color: var(--text-sub);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ========================================== */
+/* 4. MODAL POPUP PORTAL SYSTEM + ANIMATIONS  */
+/* ========================================== */
+.custom-portal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 5, 0);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  
+  /* Modal Visibility Hooks managed via CSS transitions */
+  visibility: hidden;
+  transition: background-color 0.25s ease, backdrop-filter 0.25s ease, visibility 0.25s;
+}
+
+/* Open Animation state for the Backdrop Overlay */
+.custom-portal-overlay.is-open {
+  background-color: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  visibility: visible;
+}
+
+.custom-portal-card {
+  background: rgba(20, 20, 27, 0.75);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  position: relative;
+  
+  /* Initial Closed Transformation parameters */
+  opacity: 0;
+  transform: scale(0.92) translateY(12px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+}
+
+/* Open Card Animation Target */
+.custom-portal-overlay.is-open .custom-portal-card {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.portal-close-x {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-sub);
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.portal-close-x:hover {
+  color: var(--text-main);
+}
+
+.portal-header-block {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.portal-header-block h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.portal-inner-content p {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+}
+
+/* ========================================== */
+/* 5. DYNAMIC SUPPORT INTERFACE & INPUTS      */
+/* ========================================== */
+.support-card-layout {
+  overflow: hidden;
+  transition: min-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.form-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-input-group label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input-group input, 
+.form-input-group textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  
+  /* FIX: Allows user typing input selection back without breaking page-wide selection rules */
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.form-input-group input:focus, 
+.form-input-group textarea:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.submit-ticket-btn {
+  width: 100%;
+  background: var(--text-main);
+  color: #050505;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  margin-top: 8px;
+}
+
+.submit-ticket-btn:active {
+  transform: scale(0.97);
+}
+
+/* FIX: Structural State Hooks for JS Clashing Control */
+#support-form-state, #support-success-state {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#support-form-state.state-hidden {
+  display: none !important;
+}
+
+/* Success Layout Animation Framework */
+.success-portal-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0 10px;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+#support-success-state.state-visible {
+  display: flex !important;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Vector Success Drawing Components */
+.success-checkmark-wrapper {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 24px;
+}
+
+.checkmark-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.1);
+  border: 2px solid #10b981;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.6);
+  animation: scaleInCircle 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.checkmark-icon-draw {
+  width: 14px;
+  height: 26px;
+  border-right: 3px solid #10b981;
+  border-top: 3px solid #10b981;
+  transform-origin: left top;
+  transform: scaleX(-1) rotate(135deg) translate(-2px, 4px);
+  opacity: 0;
+  animation: drawCheckIcon 0.25s ease 0.35s forwards;
+}
+
+@keyframes scaleInCircle {
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes drawCheckIcon {
+  0% { opacity: 1; height: 0; width: 0; }
+  50% { height: 0; width: 14px; }
+  100% { opacity: 1; height: 26px; width: 14px; }
+}
+
+/* ========================================== */
+/* 6. INVITE MODULE DISPLAY & PANEL CONTROLS  */
+/* ========================================== */
+.invite-desc-text {
+  margin-bottom: 20px;
+}
+
+.invite-link-box {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+#invite-link-string {
+  font-family: monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.invite-action-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.invite-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.invite-action-btn:active {
+  transform: scale(0.97);
+}
+
+.invite-action-btn svg {
+  flex-shrink: 0;
+}
+
+.invite-action-btn.primary-btn {
+  background: var(--text-main);
+  color: #050505;
+  border: none;
+}
+
+/* OPTIMIZATION: Interactive tap states for neutral background buttons */
+.invite-action-btn.secondary-btn {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-main);
+  border: 1px solid var(--glass-border);
+}
+
+.invite-action-btn.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+}
